@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2019-10-07T08:46:16.209Z</updated>
+    <updated>2019-10-07T08:51:54.143Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
     <link rel="self" href="https://maopashui.github.io//atom.xml"/>
@@ -51,7 +51,7 @@ gmake
 gmake install
 vi /etc/profile
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://maopashui.github.io//post-images/1570437008804.png" alt="1562315115401"></figure>
+<figure data-type="image" tabindex="2"><img src="https://n1.x2ve.com:11444/api/public/dl/lILJHn_r/1562315115401.png" alt="1562315115401"></figure>
 <pre><code class="language-shell">source /etc/profile #是环境变量即时生效
 mkdir /opt/pgsql/data #数据库存储路径
 chown postgres /opt/pgsql/data #给该路径授权
@@ -68,7 +68,7 @@ chmod a+x linux
 cp linux /etc/init.d/postgresql
 vi /etc/init.d/postgresql
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="https://maopashui.github.io//post-images/1570437047113.png" alt="1562316126649"></figure>
+<figure data-type="image" tabindex="3"><img src="https://n1.x2ve.com:11444/api/public/dl/khGDI028/1562316126649.png" alt="1562316126649"></figure>
 <pre><code class="language-shell">service postgresql start #启动pg服务
 service postgresql restart #重启pg服务
 chkconfig --add postgresql #添加到开启自启
@@ -77,10 +77,10 @@ chkconfig --add postgresql #添加到开启自启
 <pre><code class="language-shell">cd /opt/pgsql/data
 vi pg_hba.conf #添加一行 注意加密方式为md5
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="https://maopashui.github.io//post-images/1570437055633.png" alt="1562319275334"></figure>
+<figure data-type="image" tabindex="4"><img src="https://n1.x2ve.com:11444/api/public/dl/N77AVZVn/1562319275334.png" alt="1562319275334"></figure>
 <pre><code class="language-shell">vi postgresql.conf #修改监听地址及端口还有最大连接数，连接数最好改为1000，不然一下子跑满了，就坑了
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="https://maopashui.github.io//post-images/1570437061855.png" alt="1562316939177"></figure>
+<figure data-type="image" tabindex="5"><img src="https://n1.x2ve.com:11444/api/public/dl/-eqMbo86/1562316939177.png" alt="1562316939177"></figure>
 <pre><code class="language-shell">#最后重启服务，远程连接试试
 service postgresql restart
 </code></pre>
