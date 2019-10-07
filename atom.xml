@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2019-10-07T09:02:46.522Z</updated>
+    <updated>2019-10-07T09:03:28.224Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
     <link rel="self" href="https://maopashui.github.io//atom.xml"/>
@@ -16,13 +16,13 @@
         <link href="https://maopashui.github.io//post/centos65-an-zhuang-postgresql">
         </link>
         <updated>2019-07-05T10:01:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>机器版本:CentOS release 6.5 (Final)</p>
-<p>数据库版本：postgresql-9.6.11</p>
-<p>解压在/opt路径下，安装在/opt路径下</p>
+        <summary type="html"><![CDATA[<p>🐶机器版本:CentOS release 6.5 (Final)</p>
+<p>🐱数据库版本：postgresql-9.6.11</p>
+<p>🐰解压在/opt路径下，安装在/opt路径下</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>机器版本:CentOS release 6.5 (Final)</p>
-<p>数据库版本：postgresql-9.6.11</p>
-<p>解压在/opt路径下，安装在/opt路径下</p>
+        <content type="html"><![CDATA[<p>🐶机器版本:CentOS release 6.5 (Final)</p>
+<p>🐱数据库版本：postgresql-9.6.11</p>
+<p>🐰解压在/opt路径下，安装在/opt路径下</p>
 <!-- more -->
 <h6 id="1关闭防火墙及selinux">1关闭防火墙及selinux</h6>
 <pre><code class="language-shell">vi /etc/sysconfig/selinux
