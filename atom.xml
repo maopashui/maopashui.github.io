@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2019-09-28T07:23:37.623Z</updated>
+    <updated>2019-10-07T08:32:36.517Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
     <link rel="self" href="https://maopashui.github.io//atom.xml"/>
@@ -10,6 +10,87 @@
     <logo>https://maopashui.github.io//images/avatar.png</logo>
     <icon>https://maopashui.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 猫怕水的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Centos6.5安装postgresql]]></title>
+        <id>https://maopashui.github.io//post/centos65-an-zhuang-postgresql</id>
+        <link href="https://maopashui.github.io//post/centos65-an-zhuang-postgresql">
+        </link>
+        <updated>2019-07-05T10:01:14.000Z</updated>
+        <content type="html"><![CDATA[<p>机器版本:CentOS release 6.5 (Final)</p>
+<p>数据库版本：postgresql-9.6.11</p>
+<p>解压在/opt路径下，安装在/opt路径下</p>
+<h6 id="1关闭防火墙及selinux">1关闭防火墙及selinux</h6>
+<pre><code class="language-shell">vi /etc/sysconfig/selinux
+</code></pre>
+<pre><code class="language-shell">service iptables stop #临时关闭防火墙
+chkconfig iptables off #永久关闭防火墙
+</code></pre>
+<h6 id="2配置yum源安装依赖包">2配置yum源安装依赖包</h6>
+<pre><code class="language-shell">#进入yum路径下，备份原始repo，然后编辑CentOS-Base.repo
+cd /etc/yum.repos.d
+mkdir bak
+cp CentOS-* bak
+rm -rf CentOS-*
+cp ./bak/CentOS-Media.repo ./
+vi CentOS-Media.repo #填入指定的yum源，或者自己自建本地yum源
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://maopashui.github.io//post-images/1570436905105.png" alt="1562297983011"></figure>
+<pre><code class="language-shell">yum -y install gcc* readline-devel
+</code></pre>
+<h6 id="3开始安装">3开始安装</h6>
+<pre><code class="language-shell">#解压安装包
+tar -zxvf postgresql-9.9.11.tar.gz
+#设置用户密码
+adduser postgres
+passwd postgres
+#编译安装 将pg安装在/opt/pgsql路径下
+cd postgresql-9.6.11
+mkdir ../pgsql
+./configure --prefix=/opt/pgsql/
+gmake
+gmake install
+vi /etc/profile
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://maopashui.github.io//post-images/1570437008804.png" alt="1562315115401"></figure>
+<pre><code class="language-shell">source /etc/profile #是环境变量即时生效
+mkdir /opt/pgsql/data #数据库存储路径
+chown postgres /opt/pgsql/data #给该路径授权
+su - postgres #进入postgres用户
+#以下初始化数据库命令需要添加了环境变量才能直接运行，否则绝对路径运行
+initdb -D pgsql/data/
+postgres -D pgsql/data/ &gt;pgsql/data/logfile 2&gt;&amp;1 &amp;
+pg_ctl start -D pgsql/data/
+</code></pre>
+<h6 id="4添加自启动">4添加自启动</h6>
+<pre><code class="language-shell">#需root用户下
+cd postgresql-9.6.11/contrib/start-scripts/
+chmod a+x linux
+cp linux /etc/init.d/postgresql
+vi /etc/init.d/postgresql
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://maopashui.github.io//post-images/1570437047113.png" alt="1562316126649"></figure>
+<pre><code class="language-shell">service postgresql start #启动pg服务
+service postgresql restart #重启pg服务
+chkconfig --add postgresql #添加到开启自启
+</code></pre>
+<h6 id="远程访问连接">远程访问连接</h6>
+<pre><code class="language-shell">cd /opt/pgsql/data
+vi pg_hba.conf #添加一行 注意加密方式为md5
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://maopashui.github.io//post-images/1570437055633.png" alt="1562319275334"></figure>
+<pre><code class="language-shell">vi postgresql.conf #修改监听地址及端口还有最大连接数，连接数最好改为1000，不然一下子跑满了，就坑了
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://maopashui.github.io//post-images/1570437061855.png" alt="1562316939177"></figure>
+<pre><code class="language-shell">#最后重启服务，远程连接试试
+service postgresql restart
+</code></pre>
+<p>注意：可能postgres用户下任意密码都可以连接,处理方式为：</p>
+<p>su - postgres</p>
+<p>psql -U postgres -p 5432</p>
+<p>alter user postgres with password 'new passwd';</p>
+<p>原因可能数据库是用系统用户安装的，也可能是在pg_hba.conf路径下设置的加密方式为trust</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://maopashui.github.io//post/hello-gridea</id>
