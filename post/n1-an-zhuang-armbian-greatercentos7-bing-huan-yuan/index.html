@@ -1,0 +1,338 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>N1安装armbian-&gt;Centos7并换源 | 猫怕水的博客</title>
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
+<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1570438704874">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://maopashui.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://maopashui.github.io/">
+  <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1570438704874" alt="">
+  </a>
+  <h1 class="site-title">
+    猫怕水的博客
+  </h1>
+  <p class="site-description">
+    纸上得来终觉浅，绝知此事要躬行
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              N1安装armbian-&gt;Centos7并换源
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-07-04
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="https://maopashui.github.io//tag/QTdoCrw5F" class="post-tag">
+                  # aarch64
+                </a>
+              
+                <a href="https://maopashui.github.io//tag/Z1Qph_kZLf" class="post-tag">
+                  # armbian
+                </a>
+              
+                <a href="https://maopashui.github.io//tag/DhUjkRMZfs" class="post-tag">
+                  # N1盒子
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h6 id="降级刷入安卓固件看电视必备">降级刷入安卓固件（看电视必备）</h6>
+<p>1、首先需要webpad2.2线刷包，降级包、刷机工具（N1,USB2.0公对公，u盘,hdmi线）</p>
+<p>2、原封机器，通电，鼠标点击固件4次，打开adb</p>
+<p>3、机器连接wifi，记录下ip地址</p>
+<p>4、同局域网下的机器，打开降级工具中的run.bat</p>
+<p>选择N1降级-&gt;输入N1IP地址-&gt;开始降级（会提示boot降级完毕，盒子重启中）-&gt;关闭窗口</p>
+<p>5、重新打开run.bat</p>
+<p>选择线刷模式-&gt;输入ip地址-&gt;按提示插入usb公对公线</p>
+<p>6、打开usb_burning_tool工具，注意该工具在xp以上系统的驱动需要手动添加过时驱动，否则无法获取到驱动信息</p>
+<p>导入webPad2.2固件-&gt;去掉右侧两个擦除的勾选-&gt;且在设备ID中有hub提示连接成功-&gt;点击开始，等待固件写入</p>
+<p>7、然后拔掉usb公对公线，断电重启，即可进入webpad2.2固件安卓界面，首次进入时间可能稍长，有几分钟，请等待。</p>
+<p>参考连接：https://www.cnblogs.com/HintLee/p/9866485.html</p>
+<h6 id="刷入armbian">刷入armbian</h6>
+<p>该处以armbian5.77为例，主要操作U盘部分，</p>
+<p>1、下载对应的armbian包，国外网盘速度很慢，建议找国内网盘下载</p>
+<p>2、使用img烧录镜像到u盘中</p>
+<p>3、将U盘插入关机状态N1，通电启动，armbian自动运行起来</p>
+<p>root/1234 第一次进去会提示创建普通用户，ctrl+c跳过</p>
+<p>4、修改/boot/uEnv.ini (注意dtb只在部分5.x版本才打包的phicomm的)</p>
+<pre><code class="language-shell">dtb_name=/dtb/meson-gxl-s905d-phicomm-n1.dtb
+</code></pre>
+<p>5、修改完成 sudo reboot</p>
+<p>6、由于负载过高，重新编译一下dtb</p>
+<pre><code class="language-shell"># 反编译原始n1 dtb文件为n1.dts
+dtc -I dtb -O dts -o n1.dts /boot/dtb/meson-gxl-s905d-phicomm-n1.dtb
+#用vi 或 nano打开n1.dts，将第183行注释掉。修改前：phandle = &lt;0x1e&gt;;  修改后： #phandle = &lt;0x1b&gt;;
+vi n1.dts
+#编译新的n1.dtb
+dtc -I dts -O dtb -o n1.dtb n1.dts
+# 复制n1.dtb到/boot/dtb中并修改相应uEnv.ini文件
+sudo cp -av n1.dtb /boot/dtb/meson-gxl-s905d-phicomm-n1-xiangsm.dtb
+sudo sed -i -e 's/-n1/-n1-xiangsm/' /boot/uEnv.ini
+</code></pre>
+<p>7、修改完成  sudo reboot</p>
+<p>8、如果需要刷入EMMC，则重启后./install.sh （由于需要装Centos7,故这步是需要的），然后poweroff，拔掉U盘，断电重启，之后自启是armbian系统了</p>
+<p>参考连接：https://www.right.com.cn/forum/thread-510423-1-1.html</p>
+<p>armbian下载网盘连接：&lt;https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/5.77/S905</p>
+<h4 id="在armbian基础上刷入centos7">在armbian基础上刷入Centos7</h4>
+<p>1、基于上面第8步基础，机器处于断电关闭状态，插上U盘，插电启动,使机器处于有线连接状态，<strong>centos7需要有线网络</strong></p>
+<p>2、下载centos包并将数据文件替换到armbian系统中去</p>
+<pre><code class="language-shell">cd /root
+#下载清华的centos7.4.1708包
+wget https://mirrors.tuna.tsinghua.edu.cn/centos-vault/altarch/7.4.1708/isos/aarch64/CentOS-7-aarch64-rootfs-7.4.1708.tar.xz
+mkdir /root/x
+#e2fsck -y 预先设定所有检查时的问题均回答[是]
+e2fsck -y /dev/mmcblk1p2
+mount /dev/mmcblk1p2 /root/x
+cd x
+rm -rf * #该处会出现error，可忽略
+cd /root
+tar -xvf CentOS-7-aarch64-rootfs-7.4.1708.tar.xz -C /root/x
+cd x/lib
+rm -rf modules firmware
+cp -rp /lib/modules .
+cp -rp /lib/firmware .
+cd /root
+umount x
+</code></pre>
+<p>3、power关机，拔掉U盘，断电重启，即可进入centos7</p>
+<p>root/centos 输入passwd即可重设密码</p>
+<p>4、设置yum源</p>
+<pre><code class="language-shell">#进入yum路径并备份 CentOS-Base.repo  CentOS-Sources.repo
+cd /etc/yum.repos.d/
+mkdir bak 
+mv Cent* bak
+#创建阿里源
+vi CentOS-Base.repo
+###输入如下内容###
+[base]
+name=CentOS-$releasever - Base
+baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
+ 
+#released updates 
+[updates]
+name=CentOS-$releasever - Updates
+baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
+ 
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
+enabled=1
+ 
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/centosplus/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
+
+#创建epel.repo
+vi epel.repo
+###输入如下内容###
+[epel]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/epel/7/$basearch
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-7&amp;arch=$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+ 
+[epel-debuginfo]
+name=Extra Packages for Enterprise Linux 7 - $basearch - Debug
+#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/epel/7/$basearch/debug
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&amp;arch=$basearch
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+gpgcheck=1
+ 
+[epel-source]
+name=Extra Packages for Enterprise Linux 7 - $basearch - Source
+#baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/epel/7/SRPMS
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&amp;arch=$basearch
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+gpgcheck=1
+
+##下面的可以不用管了，本次系统yum源的校验没有问题
+cd /etc/pki/rpm-gpg/ #该路径下的KEY文件主要对yum源做校验
+</code></pre>
+<p>5、运行yum生成缓存</p>
+<pre><code class="language-shell">yum makecache
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+</code></pre>
+<p>参考连接：https://www.right.com.cn/forum/thread-429148-1-1.html</p>
+<p>https://blog.csdn.net/smart9527_zc/article/details/84976097</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%99%8D%E7%BA%A7%E5%88%B7%E5%85%A5%E5%AE%89%E5%8D%93%E5%9B%BA%E4%BB%B6%E7%9C%8B%E7%94%B5%E8%A7%86%E5%BF%85%E5%A4%87">降级刷入安卓固件（看电视必备）</a></li>
+<li><a href="#%E5%88%B7%E5%85%A5armbian">刷入armbian</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9C%A8armbian%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%88%B7%E5%85%A5centos7">在armbian基础上刷入Centos7</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://maopashui.github.io//post/hello-gridea">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://maopashui.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
