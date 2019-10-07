@@ -1,123 +1,109 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Centos6.5安装postgresql | 猫怕水的博客</title>
-<meta name="description" content="纸上得来终觉浅，绝知此事要躬行">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
+<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1570437582516">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1570437491245">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://maopashui.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://maopashui.github.io/">
-        <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1570437491245" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://maopashui.github.io/">
-        <h1 class="site-title">猫怕水的博客</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://maopashui.github.io/">
+  <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1570437582516" alt="">
+  </a>
+  <h1 class="site-title">
+    猫怕水的博客
+  </h1>
+  <p class="site-description">
+    纸上得来终觉浅，绝知此事要躬行
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
         <div class="post-detail">
-          
-          <h2 class="post-title">Centos6.5安装postgresql</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-07-05</span>
-            
+          <article class="post">
+            <h2 class="post-title">
+              Centos6.5安装postgresql
+            </h2>
+            <div class="post-info">
               <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maopashui.github.io//tag/yQUAlz_5H">
-                    Centos
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://maopashui.github.io//tag/u4xQGaE8eU">
-                    linux
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://maopashui.github.io//tag/6QF5RCgjEJ">
-                    postgresql
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://maopashui.github.io//tag/wfDazksakS">
-                    数据库安装
-                    
-                  </a>
-                
+                2019-07-05
               </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://maopashui.github.io//tag/yQUAlz_5H" class="post-tag">
+                  # Centos
+                </a>
+              
+                <a href="https://maopashui.github.io//tag/u4xQGaE8eU" class="post-tag">
+                  # linux
+                </a>
+              
+                <a href="https://maopashui.github.io//tag/6QF5RCgjEJ" class="post-tag">
+                  # postgresql
+                </a>
+              
+                <a href="https://maopashui.github.io//tag/wfDazksakS" class="post-tag">
+                  # 数据库安装
+                </a>
+              
+            </div>
             
-          </div>
-          <div class="post-content">
-            <p>机器版本:CentOS release 6.5 (Final)</p>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>机器版本:CentOS release 6.5 (Final)</p>
 <p>数据库版本：postgresql-9.6.11</p>
 <p>解压在/opt路径下，安装在/opt路径下</p>
 <h6 id="1关闭防火墙及selinux">1关闭防火墙及selinux</h6>
@@ -191,57 +177,101 @@ service postgresql restart
 <p>alter user postgres with password 'new passwd';</p>
 <p>原因可能数据库是用系统用户安装的，也可能是在pg_hba.conf路径下设置的加密方式为trust</p>
 
-          </div>
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99%E5%8F%8Aselinux">1关闭防火墙及selinux</a></li>
+<li><a href="#2%E9%85%8D%E7%BD%AEyum%E6%BA%90%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85">2配置yum源安装依赖包</a></li>
+<li><a href="#3%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85">3开始安装</a></li>
+<li><a href="#4%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%90%AF%E5%8A%A8">4添加自启动</a></li>
+<li><a href="#%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E8%BF%9E%E6%8E%A5">远程访问连接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://maopashui.github.io//post/hello-gridea">
+            <div class="next">下一篇</div>
+            <a href="https://maopashui.github.io//post/hello-gridea">
               <h3 class="post-title">
-                下一篇：Hello Gridea
+                Hello Gridea
               </h3>
             </a>
           </div>
-          
-      </div>
+        
 
-      
+        
 
-      <div class="site-footer">
-  <div class="slogan">纸上得来终觉浅，绝知此事要躬行</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://maopashui.github.io//atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://maopashui.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
+<script>
+  hljs.initHighlightingOnLoad()
 
-    </div>
-    <script type="application/javascript">
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-hljs.initHighlightingOnLoad()
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
 
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>
