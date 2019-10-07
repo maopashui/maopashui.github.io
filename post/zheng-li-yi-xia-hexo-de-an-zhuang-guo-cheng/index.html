@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>N1安装docker | 猫怕水的博客</title>
+<title>整理一下Hexo的安装过程 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1570459910401">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,46 +73,97 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              N1安装docker
+              整理一下Hexo的安装过程
             </h2>
             <div class="post-info">
               <span>
-                2019-07-04
+                2019-10-07
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
-<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
-sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
+                <p>🍡系统及环境：debian9.6/512m</p>
+<p>🍱环境及组件：git/nodejs10.16.3/npm6.9/pm2/hexo</p>
+<p>⛹️‍♀️安装路径为：/opt/</p>
+<!-- more -->
+<p>Hexo官方文档：https://hexo.io/docs/</p>
+<p>中文文档：https://hexo.io/zh-cn/docs/</p>
+<h4 id="1-开始安装配置基本环境">1、开始安装配置基本环境</h4>
+<p>nodejs网址：https://nodejs.org/en/download/</p>
+<p>下载对应的nodejs包，这里采用打包好的二进制文件安装，debian对应的系统为linux64，复制好下载链接</p>
+<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/Wm-ahS5G/1567313453464.png" alt="1567313453464"></figure>
+<pre><code class="language-shell">###先安装git
+apt-get install git-core
+###安装nodejs/npm
+cd /opt
+wget https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz #下载
+tar xf node-v10.16.3-linux-x64.tar.xz #解压包
+mv node-v10.16.3-linux-x64.tar.xz nodejs
+###有两种方法添加全局，建立软连接或添加到环境变量，二选一
+###建立软连接
+ln -s /opt/nodejs/bin/node /usr/local/bin
+ln -s /opt/nodejs/bin/npm /usr/local/bin
+###添加到环境变量
+export NODEJS_HOME=/opt/nodejs
+export PATH=$PATH:$NODEJS_HOME/bin
+source /etc/profile #刷新环境变量
+###验证是否已变为全局，正常会显示对应的版本号
+node -v
+npm -v
 </code></pre>
-<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
-<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
-<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
-<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
-<pre><code class="language-shell">mkdir -p /etc/docker
-
-tee /etc/docker/daemon.json &lt;&lt;-'EOF'
-{
-&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
-}
-EOF
-
-systemctl daemon-reload #刷新docker配置
-
-systemctl restart docker #重启docker服务
+<h4 id="2-开始安装hexo">2、开始安装hexo</h4>
+<pre><code class="language-shell">npm install -g hexo-cli
+npm install hexo-server --save #安装hexo服务器,详见：https://hexo.io/zh-cn/docs/server
+hexo init myblog
+cd myblog
+npm install
+hexo server -p 5000 #启动hexo服务并制定端口5000运行，在浏览器输入http://IP:5000即可看到hexo页面了
 </code></pre>
-<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
-<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
-
-docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
+<h4 id="3-安装pm2将服务在后台运行">3、安装pm2将服务在后台运行</h4>
+<p>安装pm2</p>
+<pre><code class="language-shell">npm  install -g pm2
 </code></pre>
-<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
+<p>在myblog下新建一个hexo_run.js文件</p>
+<pre><code class="language-shell">vi /opt/myblog/hexo_run.js
+###将以下内容粘贴进来:wq保存退出
+var spawn = require('child_process').spawn;
+
+free = spawn('hexo', ['server', '-p 5000']);/* 其实就是等于执行hexo server -p 5000*/
+
+free.stdout.on('data', function (data) {
+
+    console.log('standard output:\n' + data);
+
+});
+
+free.stderr.on('data', function (data) {
+
+    console.log('standard error output:\n' + data);
+
+});
+
+free.on('exit', function (code, signal) {
+
+    console.log('child process eixt ,exit:' + code);
+
+});
+</code></pre>
+<p>运行pm2</p>
+<pre><code class="language-shell">pm2 start app.js
+###如果需要停止服务
+pm2 stop id #pm2 list可查询id
+</code></pre>
+<h4 id="4-如果需要配置主题可参考">4、如果需要配置主题可参考</h4>
+<p>官网制定主题全集：https://hexo.io/themes/</p>
+<p>觉得简洁好看的：https://github.com/yzzting/hexo-theme-MyFairLady --&gt;对应Demo：http://www.yzz1995.cn/</p>
+<p>自用的主题：https://github.com/aircloud/hexo-theme-aircloud 个人博客：http://45.141.102.45/</p>
+<h4 id="5-写博客">5、写博客</h4>
+<p>后续再添加</p>
 
               </div>
               <div class="toc-container">
@@ -123,17 +174,11 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%89%A7%E8%A1%8C">下载安装脚本并执行</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F">配置docker镜像加速</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86portainer">安装docker图形化管理Portainer</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#1-%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83">1、开始安装配置基本环境</a></li>
+<li><a href="#2-%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85hexo">2、开始安装hexo</a></li>
+<li><a href="#3-%E5%AE%89%E8%A3%85pm2%E5%B0%86%E6%9C%8D%E5%8A%A1%E5%9C%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C">3、安装pm2将服务在后台运行</a></li>
+<li><a href="#4-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98%E5%8F%AF%E5%8F%82%E8%80%83">4、如果需要配置主题可参考</a></li>
+<li><a href="#5-%E5%86%99%E5%8D%9A%E5%AE%A2">5、写博客</a></li>
 </ul>
 </li>
 </ul>
@@ -150,9 +195,9 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://maopashui.github.io//post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan">
+            <a href="https://maopashui.github.io//post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi">
               <h3 class="post-title">
-                N1安装armbian-&gt;Centos7并换源
+                typora辅助hexo进行图片显示
               </h3>
             </a>
           </div>

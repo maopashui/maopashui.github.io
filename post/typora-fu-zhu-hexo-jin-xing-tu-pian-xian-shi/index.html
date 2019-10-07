@@ -1,8 +1,8 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>postgresql | 猫怕水的博客</title>
+<title>typora辅助hexo进行图片显示 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1570459910401">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -70,57 +70,81 @@
   </div>
 </div>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# postgresql
-            </h2> 
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              typora辅助hexo进行图片显示
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-09-01
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>配置博客文件的所有图片存储到博客当前路径的同名文件夹中。</p>
+<p>注意：对应图片文件夹在命名时不能有.，例如centos7.5，则会导致图片找不到路径，文件名可以修改为centos7-5,里面的标题取正确即可（即md文件名同对应图片文件夹在同一路径下且名字需要相同，不可出现'.'）。</p>
+<h4 id="1-修改根目录的_configyml文件">1. 修改根目录的_config.yml文件</h4>
+<pre><code class="language-yaml">post_asset_folder: true
+</code></pre>
+<h4 id="2配置typora解决图片存储问题">2.配置typora，解决图片存储问题。</h4>
+<p>配置typora，以使文件的所有图片都默认存储到当前路径的同名文件夹中。有三种配置typora方式。</p>
+<p>a. 修改博客项目配置</p>
+<p>在项目的scaffolds-&gt;post.md文件中，增加配置</p>
+<pre><code class="language-yaml">typora-copy-images-to: {{ title }} 
+</code></pre>
+<p>采用此方法，每次调用 <code>hexo new filename</code> 都会自动配置存储文件路径，供typora识别。</p>
+<p>b. 直接在md文件中的Front-matter增加配置</p>
+<pre><code class="language-yaml">typora-copy-images-to: ./博客名
+</code></pre>
+<p>c. 点击编辑-&gt;图片工具-&gt; 当插入本地文件时-&gt;复制到文件夹，修正博客图片存储路径。</p>
+<h4 id="3图片展示">3.图片展示</h4>
+<pre><code class="language-yaml">![图片说明](图片.jpg)
+</code></pre>
+<p>参考链接：https://www.jianshu.com/p/81a40a2c6514</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E5%BD%95%E7%9A%84_configyml%E6%96%87%E4%BB%B6">1. 修改根目录的_config.yml文件</a></li>
+<li><a href="#2%E9%85%8D%E7%BD%AEtypora%E8%A7%A3%E5%86%B3%E5%9B%BE%E7%89%87%E5%AD%98%E5%82%A8%E9%97%AE%E9%A2%98">2.配置typora，解决图片存储问题。</a></li>
+<li><a href="#3%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA">3.图片展示</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://maopashui.github.io//post/centos65-an-zhuang-postgresql">
-        <h2 class="post-title">Centos6.5安装postgresql</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2019-07-05
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-          <a href="https://maopashui.github.io//tag/yQUAlz_5H" class="post-tag">
-            # Centos
-          </a>
-        
-          <a href="https://maopashui.github.io//tag/u4xQGaE8eU" class="post-tag">
-            # linux
-          </a>
-        
-          <a href="https://maopashui.github.io//tag/6QF5RCgjEJ" class="post-tag">
-            # postgresql
-          </a>
-        
-          <a href="https://maopashui.github.io//tag/wfDazksakS" class="post-tag">
-            # 数据库安装
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <p>🐶机器版本:CentOS release 6.5 (Final)</p>
-<p>🐱数据库版本：postgresql-9.6.11</p>
-<p>🐰解压在/opt路径下，安装在/opt路径下</p>
 
-      </div>
-    </article>
-  
-</div>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://maopashui.github.io//post/centos65-an-zhuang-postgresql">
+              <h3 class="post-title">
+                Centos6.5安装postgresql
+              </h3>
+            </a>
+          </div>
+        
 
-        <div class="pagination-container">
-  
-  
-</div>
+        
 
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 

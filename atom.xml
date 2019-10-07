@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2019-10-07T14:38:42.402Z</updated>
+    <updated>2019-10-07T14:51:53.533Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
     <link rel="self" href="https://maopashui.github.io//atom.xml"/>
@@ -10,6 +10,123 @@
     <logo>https://maopashui.github.io//images/avatar.png</logo>
     <icon>https://maopashui.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 猫怕水的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[整理一下Hexo的安装过程]]></title>
+        <id>https://maopashui.github.io//post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng</id>
+        <link href="https://maopashui.github.io//post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng">
+        </link>
+        <updated>2019-10-07T14:41:22.000Z</updated>
+        <summary type="html"><![CDATA[<p>🍡系统及环境：debian9.6/512m</p>
+<p>🍱环境及组件：git/nodejs10.16.3/npm6.9/pm2/hexo</p>
+<p>⛹️‍♀️安装路径为：/opt/</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>🍡系统及环境：debian9.6/512m</p>
+<p>🍱环境及组件：git/nodejs10.16.3/npm6.9/pm2/hexo</p>
+<p>⛹️‍♀️安装路径为：/opt/</p>
+<!-- more -->
+<p>Hexo官方文档：https://hexo.io/docs/</p>
+<p>中文文档：https://hexo.io/zh-cn/docs/</p>
+<h4 id="1-开始安装配置基本环境">1、开始安装配置基本环境</h4>
+<p>nodejs网址：https://nodejs.org/en/download/</p>
+<p>下载对应的nodejs包，这里采用打包好的二进制文件安装，debian对应的系统为linux64，复制好下载链接</p>
+<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/Wm-ahS5G/1567313453464.png" alt="1567313453464"></figure>
+<pre><code class="language-shell">###先安装git
+apt-get install git-core
+###安装nodejs/npm
+cd /opt
+wget https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz #下载
+tar xf node-v10.16.3-linux-x64.tar.xz #解压包
+mv node-v10.16.3-linux-x64.tar.xz nodejs
+###有两种方法添加全局，建立软连接或添加到环境变量，二选一
+###建立软连接
+ln -s /opt/nodejs/bin/node /usr/local/bin
+ln -s /opt/nodejs/bin/npm /usr/local/bin
+###添加到环境变量
+export NODEJS_HOME=/opt/nodejs
+export PATH=$PATH:$NODEJS_HOME/bin
+source /etc/profile #刷新环境变量
+###验证是否已变为全局，正常会显示对应的版本号
+node -v
+npm -v
+</code></pre>
+<h4 id="2-开始安装hexo">2、开始安装hexo</h4>
+<pre><code class="language-shell">npm install -g hexo-cli
+npm install hexo-server --save #安装hexo服务器,详见：https://hexo.io/zh-cn/docs/server
+hexo init myblog
+cd myblog
+npm install
+hexo server -p 5000 #启动hexo服务并制定端口5000运行，在浏览器输入http://IP:5000即可看到hexo页面了
+</code></pre>
+<h4 id="3-安装pm2将服务在后台运行">3、安装pm2将服务在后台运行</h4>
+<p>安装pm2</p>
+<pre><code class="language-shell">npm  install -g pm2
+</code></pre>
+<p>在myblog下新建一个hexo_run.js文件</p>
+<pre><code class="language-shell">vi /opt/myblog/hexo_run.js
+###将以下内容粘贴进来:wq保存退出
+var spawn = require('child_process').spawn;
+
+free = spawn('hexo', ['server', '-p 5000']);/* 其实就是等于执行hexo server -p 5000*/
+
+free.stdout.on('data', function (data) {
+
+    console.log('standard output:\n' + data);
+
+});
+
+free.stderr.on('data', function (data) {
+
+    console.log('standard error output:\n' + data);
+
+});
+
+free.on('exit', function (code, signal) {
+
+    console.log('child process eixt ,exit:' + code);
+
+});
+</code></pre>
+<p>运行pm2</p>
+<pre><code class="language-shell">pm2 start app.js
+###如果需要停止服务
+pm2 stop id #pm2 list可查询id
+</code></pre>
+<h4 id="4-如果需要配置主题可参考">4、如果需要配置主题可参考</h4>
+<p>官网制定主题全集：https://hexo.io/themes/</p>
+<p>觉得简洁好看的：https://github.com/yzzting/hexo-theme-MyFairLady --&gt;对应Demo：http://www.yzz1995.cn/</p>
+<p>自用的主题：https://github.com/aircloud/hexo-theme-aircloud 个人博客：http://45.141.102.45/</p>
+<h4 id="5-写博客">5、写博客</h4>
+<p>后续再添加</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[typora辅助hexo进行图片显示]]></title>
+        <id>https://maopashui.github.io//post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi</id>
+        <link href="https://maopashui.github.io//post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi">
+        </link>
+        <updated>2019-09-01T14:39:03.000Z</updated>
+        <content type="html"><![CDATA[<p>配置博客文件的所有图片存储到博客当前路径的同名文件夹中。</p>
+<p>注意：对应图片文件夹在命名时不能有.，例如centos7.5，则会导致图片找不到路径，文件名可以修改为centos7-5,里面的标题取正确即可（即md文件名同对应图片文件夹在同一路径下且名字需要相同，不可出现'.'）。</p>
+<h4 id="1-修改根目录的_configyml文件">1. 修改根目录的_config.yml文件</h4>
+<pre><code class="language-yaml">post_asset_folder: true
+</code></pre>
+<h4 id="2配置typora解决图片存储问题">2.配置typora，解决图片存储问题。</h4>
+<p>配置typora，以使文件的所有图片都默认存储到当前路径的同名文件夹中。有三种配置typora方式。</p>
+<p>a. 修改博客项目配置</p>
+<p>在项目的scaffolds-&gt;post.md文件中，增加配置</p>
+<pre><code class="language-yaml">typora-copy-images-to: {{ title }} 
+</code></pre>
+<p>采用此方法，每次调用 <code>hexo new filename</code> 都会自动配置存储文件路径，供typora识别。</p>
+<p>b. 直接在md文件中的Front-matter增加配置</p>
+<pre><code class="language-yaml">typora-copy-images-to: ./博客名
+</code></pre>
+<p>c. 点击编辑-&gt;图片工具-&gt; 当插入本地文件时-&gt;复制到文件夹，修正博客图片存储路径。</p>
+<h4 id="3图片展示">3.图片展示</h4>
+<pre><code class="language-yaml">![图片说明](图片.jpg)
+</code></pre>
+<p>参考链接：https://www.jianshu.com/p/81a40a2c6514</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Centos6.5安装postgresql]]></title>
         <id>https://maopashui.github.io//post/centos65-an-zhuang-postgresql</id>
@@ -39,7 +156,7 @@ rm -rf CentOS-*
 cp ./bak/CentOS-Media.repo ./
 vi CentOS-Media.repo #填入指定的yum源，或者自己自建本地yum源
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/5ux84BTn/1562297983011.png" alt="1562297983011"></figure>
+<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/jGBIyAyp/1562297983011.png" alt="1562297983011"></figure>
 <pre><code class="language-shell">yum -y install gcc* readline-devel
 </code></pre>
 <h6 id="3开始安装">3开始安装</h6>
@@ -56,7 +173,7 @@ gmake
 gmake install
 vi /etc/profile
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/lILJHn_r/1562315115401.png" alt="1562315115401"></figure>
+<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/iTQCLUdg/1562315115401.png" alt="1562315115401"></figure>
 <pre><code class="language-shell">source /etc/profile #是环境变量即时生效
 mkdir /opt/pgsql/data #数据库存储路径
 chown postgres /opt/pgsql/data #给该路径授权
@@ -73,7 +190,7 @@ chmod a+x linux
 cp linux /etc/init.d/postgresql
 vi /etc/init.d/postgresql
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/khGDI028/1562316126649.png" alt="1562316126649"></figure>
+<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/PiuE8_EH/1562316126649.png" alt="1562316126649"></figure>
 <pre><code class="language-shell">service postgresql start #启动pg服务
 service postgresql restart #重启pg服务
 chkconfig --add postgresql #添加到开启自启
@@ -82,10 +199,10 @@ chkconfig --add postgresql #添加到开启自启
 <pre><code class="language-shell">cd /opt/pgsql/data
 vi pg_hba.conf #添加一行 注意加密方式为md5
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/N77AVZVn/1562319275334.png" alt="1562319275334"></figure>
+<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/UphQG07E/1562319275334.png" alt="1562319275334"></figure>
 <pre><code class="language-shell">vi postgresql.conf #修改监听地址及端口还有最大连接数，连接数最好改为1000，不然一下子跑满了，就坑了
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/-eqMbo86/1562316939177.png" alt="1562316939177"></figure>
+<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/WFEz8GpP/1562316939177.png" alt="1562316939177"></figure>
 <pre><code class="language-shell">#最后重启服务，远程连接试试
 service postgresql restart
 </code></pre>
