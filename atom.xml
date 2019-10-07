@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2019-10-07T13:58:08.190Z</updated>
+    <updated>2019-10-07T14:38:42.402Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
     <link rel="self" href="https://maopashui.github.io//atom.xml"/>
@@ -94,6 +94,40 @@ service postgresql restart
 <p>psql -U postgres -p 5432</p>
 <p>alter user postgres with password 'new passwd';</p>
 <p>原因可能数据库是用系统用户安装的，也可能是在pg_hba.conf路径下设置的加密方式为trust</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[N1安装docker]]></title>
+        <id>https://maopashui.github.io//post/n1-an-zhuang-docker</id>
+        <link href="https://maopashui.github.io//post/n1-an-zhuang-docker">
+        </link>
+        <updated>2019-07-04T14:37:48.000Z</updated>
+        <content type="html"><![CDATA[<h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
+<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
+sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
+</code></pre>
+<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
+<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
+<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
+<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
+<pre><code class="language-shell">mkdir -p /etc/docker
+
+tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
+}
+EOF
+
+systemctl daemon-reload #刷新docker配置
+
+systemctl restart docker #重启docker服务
+</code></pre>
+<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
+<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
+
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
+</code></pre>
+<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
 ]]></content>
     </entry>
     <entry>

@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | 猫怕水的博客</title>
+<title>N1安装docker | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1570459114585">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,52 +73,71 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              N1安装docker
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2019-07-04
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
-              
-                <a href="https://maopashui.github.io//tag/xlUqps2Hc" class="post-tag">
-                  # Gridea
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
+<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
+sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
+</code></pre>
+<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
+<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
+<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
+<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
+<pre><code class="language-shell">mkdir -p /etc/docker
+
+tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
+}
+EOF
+
+systemctl daemon-reload #刷新docker配置
+
+systemctl restart docker #重启docker服务
+</code></pre>
+<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
+<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
+
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
+</code></pre>
+<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%89%A7%E8%A1%8C">下载安装脚本并执行</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F">配置docker镜像加速</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86portainer">安装docker图形化管理Portainer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -128,6 +147,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://maopashui.github.io//post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan">
+              <h3 class="post-title">
+                N1安装armbian-&gt;Centos7并换源
+              </h3>
+            </a>
+          </div>
         
 
         
