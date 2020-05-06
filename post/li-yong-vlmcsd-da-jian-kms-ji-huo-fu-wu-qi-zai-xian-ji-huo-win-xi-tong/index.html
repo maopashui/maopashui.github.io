@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>typora辅助hexo进行图片显示 | 猫怕水的博客</title>
+<title>利用vlmcsd搭建KMS激活服务器在线激活Win系统 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1588771156250">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,11 +73,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              typora辅助hexo进行图片显示
+              利用vlmcsd搭建KMS激活服务器在线激活Win系统
             </h2>
             <div class="post-info">
               <span>
-                2019-09-01
+                2020-05-06
               </span>
               <span>
                 2 min read
@@ -87,26 +87,37 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>配置博客文件的所有图片存储到博客当前路径的同名文件夹中。</p>
-<p>注意：对应图片文件夹在命名时不能有.，例如centos7.5，则会导致图片找不到路径，文件名可以修改为centos7-5,里面的标题取正确即可（即md文件名同对应图片文件夹在同一路径下且名字需要相同，不可出现'.'）。</p>
-<h4 id="1-修改根目录的_configyml文件">1. 修改根目录的_config.yml文件</h4>
-<pre><code class="language-yaml">post_asset_folder: true
+                <p>💻激活系统：Windows10 企业版 LTSC</p>
+<p>⌨️搭建系统：Linux</p>
+<!-- more -->
+<p>如果有钱，大家还是支持正版比较好。</p>
+<h6 id="一-下载解压上传">一、下载解压上传：</h6>
+<p><a href="https://github.com/Wind4/vlmcsd/releases">vlmcsd下载</a></p>
+<p>下载完毕进行解压操作，由于我使用的是linux搭建，</p>
+<p>把<font color=#CD6600>binaries\Linux\intel\static\</font>下的<font color=green>vlmcsd-x64-musl-static</font>上传至Linux<font color=#CD6600>/usr/bin/</font>目录下并改名为<font color=green>vlmcsd</font></p>
+<h6 id="二-给予执行权限">二、给予执行权限</h6>
+<pre><code class="language-shell">chmod +x /usr/bin/vlmcsd
 </code></pre>
-<h4 id="2配置typora解决图片存储问题">2.配置typora，解决图片存储问题。</h4>
-<p>配置typora，以使文件的所有图片都默认存储到当前路径的同名文件夹中。有三种配置typora方式。</p>
-<p>a. 修改博客项目配置</p>
-<p>在项目的scaffolds-&gt;post.md文件中，增加配置</p>
-<pre><code class="language-yaml">typora-copy-images-to: {{ title }} 
+<h6 id="三-开启kms服务">三、开启KMS服务</h6>
+<pre><code class="language-shell">/usr/bin/vlmcsd -L 0.0.0.0:2333
 </code></pre>
-<p>采用此方法，每次调用 <code>hexo new filename</code> 都会自动配置存储文件路径，供typora识别。</p>
-<p>b. 直接在md文件中的Front-matter增加配置</p>
-<pre><code class="language-yaml">typora-copy-images-to: ./博客名
+<p>默认为 1688 端口，激活时无需输入端口号，可以指定相应的端口号，如教程2333</p>
+<h6 id="四-验证服务是否开启">四、验证服务是否开启</h6>
+<p>回到Windows,进入<font color=#cd6600>binaries\Windows\intel\</font></p>
+<p>在地址栏输入CMD，并输入vlmcs-Windows-x64.exe 部署的IP+端口2333，显示successfly则部署成功</p>
+<pre><code class="language-powershell">vlmcs-Windows-x64.exe 192.168.0.111:2333
 </code></pre>
-<p>c. 点击编辑-&gt;图片工具-&gt; 当插入本地文件时-&gt;复制到文件夹，修正博客图片存储路径。</p>
-<h4 id="3图片展示">3.图片展示</h4>
-<pre><code class="language-yaml">![图片说明](图片.jpg)
+<h6 id="五-执行授权命令">五、执行授权命令</h6>
+<pre><code class="language-powershell">slmgr.vbs /upk
+slmgr /ipk M7XTQ-FN8P5-TTKYV-9D4CC-J462D #激活不同的系统需要不同的激活码
+slmgr /skms 192.168.0.111:2333 #部署的IP+端口2333
+slmgr /ato
+slmgr /ato
+slmgr -dlv #显示激活信息
 </code></pre>
-<p>参考链接：https://www.jianshu.com/p/81a40a2c6514</p>
+<h6 id="六-不足之处">六、不足之处</h6>
+<p>该激活方式可能不能适应所有系统</p>
+<p>改激活方式有180的激活周期，到期需重新操作。</p>
 
               </div>
               <div class="toc-container">
@@ -117,9 +128,20 @@
 <ul>
 <li>
 <ul>
-<li><a href="#1-%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E5%BD%95%E7%9A%84_configyml%E6%96%87%E4%BB%B6">1. 修改根目录的_config.yml文件</a></li>
-<li><a href="#2%E9%85%8D%E7%BD%AEtypora%E8%A7%A3%E5%86%B3%E5%9B%BE%E7%89%87%E5%AD%98%E5%82%A8%E9%97%AE%E9%A2%98">2.配置typora，解决图片存储问题。</a></li>
-<li><a href="#3%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA">3.图片展示</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E4%B8%8B%E8%BD%BD%E8%A7%A3%E5%8E%8B%E4%B8%8A%E4%BC%A0">一、下载解压上传：</a></li>
+<li><a href="#%E4%BA%8C-%E7%BB%99%E4%BA%88%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90">二、给予执行权限</a></li>
+<li><a href="#%E4%B8%89-%E5%BC%80%E5%90%AFkms%E6%9C%8D%E5%8A%A1">三、开启KMS服务</a></li>
+<li><a href="#%E5%9B%9B-%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E5%BC%80%E5%90%AF">四、验证服务是否开启</a></li>
+<li><a href="#%E4%BA%94-%E6%89%A7%E8%A1%8C%E6%8E%88%E6%9D%83%E5%91%BD%E4%BB%A4">五、执行授权命令</a></li>
+<li><a href="#%E5%85%AD-%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84">六、不足之处</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -136,9 +158,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://maopashui.github.io//post/centos65-an-zhuang-postgresql">
+            <a href="https://maopashui.github.io//post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng">
               <h3 class="post-title">
-                Centos6.5安装postgresql
+                整理一下Hexo的安装过程
               </h3>
             </a>
           </div>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2020-05-06T12:15:37.593Z</updated>
+    <updated>2020-05-06T13:19:26.359Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
     <link rel="self" href="https://maopashui.github.io//atom.xml"/>
@@ -10,6 +10,48 @@
     <logo>https://maopashui.github.io//images/avatar.png</logo>
     <icon>https://maopashui.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, 猫怕水的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[利用vlmcsd搭建KMS激活服务器在线激活Win系统]]></title>
+        <id>https://maopashui.github.io//post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong</id>
+        <link href="https://maopashui.github.io//post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong">
+        </link>
+        <updated>2020-05-06T12:51:58.000Z</updated>
+        <summary type="html"><![CDATA[<p>💻激活系统：Windows10 企业版 LTSC</p>
+<p>⌨️搭建系统：Linux</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>💻激活系统：Windows10 企业版 LTSC</p>
+<p>⌨️搭建系统：Linux</p>
+<!-- more -->
+<p>如果有钱，大家还是支持正版比较好。</p>
+<h6 id="一-下载解压上传">一、下载解压上传：</h6>
+<p><a href="https://github.com/Wind4/vlmcsd/releases">vlmcsd下载</a></p>
+<p>下载完毕进行解压操作，由于我使用的是linux搭建，</p>
+<p>把<font color=#CD6600>binaries\Linux\intel\static\</font>下的<font color=green>vlmcsd-x64-musl-static</font>上传至Linux<font color=#CD6600>/usr/bin/</font>目录下并改名为<font color=green>vlmcsd</font></p>
+<h6 id="二-给予执行权限">二、给予执行权限</h6>
+<pre><code class="language-shell">chmod +x /usr/bin/vlmcsd
+</code></pre>
+<h6 id="三-开启kms服务">三、开启KMS服务</h6>
+<pre><code class="language-shell">/usr/bin/vlmcsd -L 0.0.0.0:2333
+</code></pre>
+<p>默认为 1688 端口，激活时无需输入端口号，可以指定相应的端口号，如教程2333</p>
+<h6 id="四-验证服务是否开启">四、验证服务是否开启</h6>
+<p>回到Windows,进入<font color=#cd6600>binaries\Windows\intel\</font></p>
+<p>在地址栏输入CMD，并输入vlmcs-Windows-x64.exe 部署的IP+端口2333，显示successfly则部署成功</p>
+<pre><code class="language-powershell">vlmcs-Windows-x64.exe 192.168.0.111:2333
+</code></pre>
+<h6 id="五-执行授权命令">五、执行授权命令</h6>
+<pre><code class="language-powershell">slmgr.vbs /upk
+slmgr /ipk M7XTQ-FN8P5-TTKYV-9D4CC-J462D #激活不同的系统需要不同的激活码
+slmgr /skms 192.168.0.111:2333 #部署的IP+端口2333
+slmgr /ato
+slmgr /ato
+slmgr -dlv #显示激活信息
+</code></pre>
+<h6 id="六-不足之处">六、不足之处</h6>
+<p>该激活方式可能不能适应所有系统</p>
+<p>改激活方式有180的激活周期，到期需重新操作。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[整理一下Hexo的安装过程]]></title>
         <id>https://maopashui.github.io//post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng</id>
