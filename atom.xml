@@ -2,18 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2020-05-06T13:22:47.446Z</updated>
+    <updated>2020-05-07T01:50:03.431Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maopashui.github.io/"/>
-    <link rel="self" href="https://maopashui.github.io//atom.xml"/>
+    <link rel="self" href="https://maopashui.github.io/atom.xml"/>
     <subtitle>纸上得来终觉浅，绝知此事要躬行</subtitle>
-    <logo>https://maopashui.github.io//images/avatar.png</logo>
-    <icon>https://maopashui.github.io//favicon.ico</icon>
+    <logo>https://maopashui.github.io/images/avatar.png</logo>
+    <icon>https://maopashui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 猫怕水的博客</rights>
     <entry>
         <title type="html"><![CDATA[利用vlmcsd搭建KMS激活服务器在线激活Win系统]]></title>
-        <id>https://maopashui.github.io//post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong</id>
-        <link href="https://maopashui.github.io//post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong">
+        <id>https://maopashui.github.io/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/</id>
+        <link href="https://maopashui.github.io/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/">
         </link>
         <updated>2020-05-06T12:51:58.000Z</updated>
         <summary type="html"><![CDATA[<p>💻激活系统：Windows10 企业版 LTSC</p>
@@ -54,8 +54,8 @@ slmgr -dlv #显示激活信息
     </entry>
     <entry>
         <title type="html"><![CDATA[整理一下Hexo的安装过程]]></title>
-        <id>https://maopashui.github.io//post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng</id>
-        <link href="https://maopashui.github.io//post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng">
+        <id>https://maopashui.github.io/post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng/</id>
+        <link href="https://maopashui.github.io/post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng/">
         </link>
         <updated>2019-10-07T14:41:22.000Z</updated>
         <summary type="html"><![CDATA[<p>🍡系统及环境：debian9.6/512m</p>
@@ -71,7 +71,7 @@ slmgr -dlv #显示激活信息
 <h4 id="1-开始安装配置基本环境">1、开始安装配置基本环境</h4>
 <p>nodejs网址：https://nodejs.org/en/download/</p>
 <p>下载对应的nodejs包，这里采用打包好的二进制文件安装，debian对应的系统为linux64，复制好下载链接</p>
-<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/Qnqf6Zdu/1567313453464.png" alt="1567313453464"></figure>
+<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/Qnqf6Zdu/1567313453464.png" alt="1567313453464" loading="lazy"></figure>
 <pre><code class="language-shell">###先安装git
 apt-get install git-core
 ###安装nodejs/npm
@@ -143,8 +143,8 @@ pm2 stop id #pm2 list可查询id
     </entry>
     <entry>
         <title type="html"><![CDATA[typora辅助hexo进行图片显示]]></title>
-        <id>https://maopashui.github.io//post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi</id>
-        <link href="https://maopashui.github.io//post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi">
+        <id>https://maopashui.github.io/post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi/</id>
+        <link href="https://maopashui.github.io/post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi/">
         </link>
         <updated>2019-09-01T14:39:03.000Z</updated>
         <content type="html"><![CDATA[<p>配置博客文件的所有图片存储到博客当前路径的同名文件夹中。</p>
@@ -171,8 +171,8 @@ pm2 stop id #pm2 list可查询id
     </entry>
     <entry>
         <title type="html"><![CDATA[Centos6.5安装postgresql]]></title>
-        <id>https://maopashui.github.io//post/centos65-an-zhuang-postgresql</id>
-        <link href="https://maopashui.github.io//post/centos65-an-zhuang-postgresql">
+        <id>https://maopashui.github.io/post/centos65-an-zhuang-postgresql/</id>
+        <link href="https://maopashui.github.io/post/centos65-an-zhuang-postgresql/">
         </link>
         <updated>2019-07-05T10:01:14.000Z</updated>
         <summary type="html"><![CDATA[<p>🐶机器版本:CentOS release 6.5 (Final)</p>
@@ -198,7 +198,7 @@ rm -rf CentOS-*
 cp ./bak/CentOS-Media.repo ./
 vi CentOS-Media.repo #填入指定的yum源，或者自己自建本地yum源
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/eGaSy1Xn/1562297983011.png" alt="1562297983011"></figure>
+<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/eGaSy1Xn/1562297983011.png" alt="1562297983011" loading="lazy"></figure>
 <pre><code class="language-shell">yum -y install gcc* readline-devel
 </code></pre>
 <h6 id="3开始安装">3开始安装</h6>
@@ -215,7 +215,7 @@ gmake
 gmake install
 vi /etc/profile
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/HM9bF8pa/1562315115401.png" alt="1562315115401"></figure>
+<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/HM9bF8pa/1562315115401.png" alt="1562315115401" loading="lazy"></figure>
 <pre><code class="language-shell">source /etc/profile #是环境变量即时生效
 mkdir /opt/pgsql/data #数据库存储路径
 chown postgres /opt/pgsql/data #给该路径授权
@@ -232,7 +232,7 @@ chmod a+x linux
 cp linux /etc/init.d/postgresql
 vi /etc/init.d/postgresql
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/x5m2v1la/1562316126649.png" alt="1562316126649"></figure>
+<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/x5m2v1la/1562316126649.png" alt="1562316126649" loading="lazy"></figure>
 <pre><code class="language-shell">service postgresql start #启动pg服务
 service postgresql restart #重启pg服务
 chkconfig --add postgresql #添加到开启自启
@@ -241,10 +241,10 @@ chkconfig --add postgresql #添加到开启自启
 <pre><code class="language-shell">cd /opt/pgsql/data
 vi pg_hba.conf #添加一行 注意加密方式为md5
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/4f916ik6/1562319275334.png" alt="1562319275334"></figure>
+<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/4f916ik6/1562319275334.png" alt="1562319275334" loading="lazy"></figure>
 <pre><code class="language-shell">vi postgresql.conf #修改监听地址及端口还有最大连接数，连接数最好改为1000，不然一下子跑满了，就坑了
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/h8CircQp/1562316939177.png" alt="1562316939177"></figure>
+<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/h8CircQp/1562316939177.png" alt="1562316939177" loading="lazy"></figure>
 <pre><code class="language-shell">#最后重启服务，远程连接试试
 service postgresql restart
 </code></pre>
@@ -257,8 +257,8 @@ service postgresql restart
     </entry>
     <entry>
         <title type="html"><![CDATA[N1安装docker]]></title>
-        <id>https://maopashui.github.io//post/n1-an-zhuang-docker</id>
-        <link href="https://maopashui.github.io//post/n1-an-zhuang-docker">
+        <id>https://maopashui.github.io/post/n1-an-zhuang-docker/</id>
+        <link href="https://maopashui.github.io/post/n1-an-zhuang-docker/">
         </link>
         <updated>2019-07-04T14:37:48.000Z</updated>
         <content type="html"><![CDATA[<h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
@@ -291,8 +291,8 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
     </entry>
     <entry>
         <title type="html"><![CDATA[N1安装armbian->Centos7并换源]]></title>
-        <id>https://maopashui.github.io//post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan</id>
-        <link href="https://maopashui.github.io//post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan">
+        <id>https://maopashui.github.io/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/</id>
+        <link href="https://maopashui.github.io/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/">
         </link>
         <updated>2019-07-04T13:16:24.000Z</updated>
         <content type="html"><![CDATA[<h6 id="降级刷入安卓固件看电视必备">降级刷入安卓固件（看电视必备）</h6>
@@ -439,8 +439,8 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://maopashui.github.io//post/hello-gridea</id>
-        <link href="https://maopashui.github.io//post/hello-gridea">
+        <id>https://maopashui.github.io/post/hello-gridea/</id>
+        <link href="https://maopashui.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>

@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Centos6.5安装postgresql | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
-<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1588771359900">
+<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1588815906611">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://maopashui.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://maopashui.github.io/">
-  <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1588771359900" alt="">
+  <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1588815906611" alt="">
   </a>
   <h1 class="site-title">
     猫怕水的博客
@@ -83,19 +83,19 @@
                 3 min read
               </span>
               
-                <a href="https://maopashui.github.io//tag/yQUAlz_5H" class="post-tag">
+                <a href="https://maopashui.github.io/tag/yQUAlz_5H/" class="post-tag">
                   # Centos
                 </a>
               
-                <a href="https://maopashui.github.io//tag/u4xQGaE8eU" class="post-tag">
+                <a href="https://maopashui.github.io/tag/u4xQGaE8eU/" class="post-tag">
                   # linux
                 </a>
               
-                <a href="https://maopashui.github.io//tag/6QF5RCgjEJ" class="post-tag">
+                <a href="https://maopashui.github.io/tag/6QF5RCgjEJ/" class="post-tag">
                   # postgresql
                 </a>
               
-                <a href="https://maopashui.github.io//tag/wfDazksakS" class="post-tag">
+                <a href="https://maopashui.github.io/tag/wfDazksakS/" class="post-tag">
                   # 数据库安装
                 </a>
               
@@ -122,7 +122,7 @@ rm -rf CentOS-*
 cp ./bak/CentOS-Media.repo ./
 vi CentOS-Media.repo #填入指定的yum源，或者自己自建本地yum源
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/eGaSy1Xn/1562297983011.png" alt="1562297983011"></figure>
+<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/eGaSy1Xn/1562297983011.png" alt="1562297983011" loading="lazy"></figure>
 <pre><code class="language-shell">yum -y install gcc* readline-devel
 </code></pre>
 <h6 id="3开始安装">3开始安装</h6>
@@ -139,7 +139,7 @@ gmake
 gmake install
 vi /etc/profile
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/HM9bF8pa/1562315115401.png" alt="1562315115401"></figure>
+<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/HM9bF8pa/1562315115401.png" alt="1562315115401" loading="lazy"></figure>
 <pre><code class="language-shell">source /etc/profile #是环境变量即时生效
 mkdir /opt/pgsql/data #数据库存储路径
 chown postgres /opt/pgsql/data #给该路径授权
@@ -156,7 +156,7 @@ chmod a+x linux
 cp linux /etc/init.d/postgresql
 vi /etc/init.d/postgresql
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/x5m2v1la/1562316126649.png" alt="1562316126649"></figure>
+<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/x5m2v1la/1562316126649.png" alt="1562316126649" loading="lazy"></figure>
 <pre><code class="language-shell">service postgresql start #启动pg服务
 service postgresql restart #重启pg服务
 chkconfig --add postgresql #添加到开启自启
@@ -165,10 +165,10 @@ chkconfig --add postgresql #添加到开启自启
 <pre><code class="language-shell">cd /opt/pgsql/data
 vi pg_hba.conf #添加一行 注意加密方式为md5
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/4f916ik6/1562319275334.png" alt="1562319275334"></figure>
+<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/4f916ik6/1562319275334.png" alt="1562319275334" loading="lazy"></figure>
 <pre><code class="language-shell">vi postgresql.conf #修改监听地址及端口还有最大连接数，连接数最好改为1000，不然一下子跑满了，就坑了
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/h8CircQp/1562316939177.png" alt="1562316939177"></figure>
+<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/h8CircQp/1562316939177.png" alt="1562316939177" loading="lazy"></figure>
 <pre><code class="language-shell">#最后重启服务，远程连接试试
 service postgresql restart
 </code></pre>
@@ -216,7 +216,7 @@ service postgresql restart
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://maopashui.github.io//post/n1-an-zhuang-docker">
+            <a href="https://maopashui.github.io/post/n1-an-zhuang-docker/">
               <h3 class="post-title">
                 N1安装docker
               </h3>
