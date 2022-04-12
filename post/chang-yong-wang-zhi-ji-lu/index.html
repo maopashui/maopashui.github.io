@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>N1安装docker | 猫怕水的博客</title>
+<title>常用网址记录 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1649767233022">
 <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
@@ -73,77 +73,78 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              N1安装docker
+              常用网址记录
             </h2>
             <div class="post-info">
               <span>
-                2019-07-04
+                2022-04-03
               </span>
               <span>
                 1 min read
               </span>
               
-                <a href="http://localhost:4000/tag/oNRJjJLaq/" class="post-tag">
-                  # docker
-                </a>
-              
-                <a href="http://localhost:4000/tag/DhUjkRMZfs/" class="post-tag">
-                  # N1盒子
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
-<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
-sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
-</code></pre>
-<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
-<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
-<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
-<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
-<pre><code class="language-shell">mkdir -p /etc/docker
-
-tee /etc/docker/daemon.json &lt;&lt;-'EOF'
-{
-&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
-}
-EOF
-
-systemctl daemon-reload #刷新docker配置
-
-systemctl restart docker #重启docker服务
-</code></pre>
-<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
-<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
-
-docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
-</code></pre>
-<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
+                <h2 id="font-color8b1a1a设计类font"><font color=#8B1A1A>设计类</font></h2>
+<h2 id="font-color8b1a1a工具类font"><font color=#8B1A1A>工具类</font></h2>
+<h3 id="font-colorffaeb9在线工具font"><font color=#FFAEB9>在线工具</font></h3>
+<p><a href="https://tool.lu/crontab/">crontab在线</a>	<br>
+<a href="http://www.jsons.cn/">json在线解析1</a>	<br>
+<a href="https://www.json.cn/">json在线解析2</a>	<br>
+<a href="https://www.free-api.com/">免费api接口</a>	<br>
+<a href=""></a>	    <a href=""></a>	    <a href=""></a>	    <a href=""></a></p>
+<h3 id="font-colorffaeb9镜像站font"><font color=#FFAEB9>镜像站</font></h3>
+<p>首推清华<br>
+<a href="http://mirrors.163.com/">网易</a>	<br>
+<a href="https://mirrors.huaweicloud.com/home">华为</a>	<br>
+<a href="https://mirrors.tuna.tsinghua.edu.cn/">清华</a>	<br>
+<a href=""></a>	    <a href=""></a>	    <a href=""></a></p>
+<h3 id="font-colorffaeb9图床font"><font color=#FFAEB9>图床</font></h3>
+<p><a href=""></a>	<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+<h3 id="font-colorffaeb9文件分享font"><font color=#FFAEB9>文件分享</font></h3>
+<p><a href=""></a>	<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+<h2 id="font-color8b1a1a学习类font"><font color=#8B1A1A>学习类</font></h2>
+<p><a href="https://www.liaoxuefeng.com/">廖雪峰</a>	<br>
+<a href="https://www.r2coding.com/">r2coding</a>	<br>
+<a href="https://www.bookstack.cn/">书栈网</a>	<br>
+<a href=""></a></p>
+<h2 id="font-color8b1a1avps购买font"><font color=#8B1A1A>VPS购买</font></h2>
+<p><a href="https://cloud.tencent.com/">腾讯云</a>	<br>
+<a href="https://www.aliyun.com/">阿里云</a>	<br>
+<a href=""></a>	<a href=""></a></p>
+<h2 id="font-color8b1a1a常用工具下载链接font"><font color=#8B1A1A>常用工具下载链接</font></h2>
+<h3 id="font-colorffaeb9数据库font"><font color=#FFAEB9>数据库</font></h3>
+<p><a href="https://www.postgresql.org/ftp/source/">PostgreSQL</a>	<br>
+<a href="http://www.mirrorservice.org/sites/ftp.mysql.com/Downloads/">MySQL</a>	<br>
+<a href=""></a>	<a href=""></a></p>
+<h3 id="font-colorffaeb9系统font"><font color=#FFAEB9>系统</font></h3>
+<p><a href="https://msdn.itellyou.cn/">MSDN我告诉你</a>	<br>
+<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+<p>方便复制↓↓↓↓↓</p>
+<p><a href=""></a>	<a href=""></a>	<a href=""></a>	<a href=""></a></p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
+<li><a href="#font-color8b1a1a%E8%AE%BE%E8%AE%A1%E7%B1%BBfont"><font color=#8B1A1A>设计类</font></a></li>
+<li><a href="#font-color8b1a1a%E5%B7%A5%E5%85%B7%E7%B1%BBfont"><font color=#8B1A1A>工具类</font></a>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%89%A7%E8%A1%8C">下载安装脚本并执行</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F">配置docker镜像加速</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86portainer">安装docker图形化管理Portainer</a></li>
+<li><a href="#font-colorffaeb9%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7font"><font color=#FFAEB9>在线工具</font></a></li>
+<li><a href="#font-colorffaeb9%E9%95%9C%E5%83%8F%E7%AB%99font"><font color=#FFAEB9>镜像站</font></a></li>
+<li><a href="#font-colorffaeb9%E5%9B%BE%E5%BA%8Afont"><font color=#FFAEB9>图床</font></a></li>
+<li><a href="#font-colorffaeb9%E6%96%87%E4%BB%B6%E5%88%86%E4%BA%ABfont"><font color=#FFAEB9>文件分享</font></a></li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#font-color8b1a1a%E5%AD%A6%E4%B9%A0%E7%B1%BBfont"><font color=#8B1A1A>学习类</font></a></li>
+<li><a href="#font-color8b1a1avps%E8%B4%AD%E4%B9%B0font"><font color=#8B1A1A>VPS购买</font></a></li>
+<li><a href="#font-color8b1a1a%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5font"><font color=#8B1A1A>常用工具下载链接</font></a>
+<ul>
+<li><a href="#font-colorffaeb9%E6%95%B0%E6%8D%AE%E5%BA%93font"><font color=#FFAEB9>数据库</font></a></li>
+<li><a href="#font-colorffaeb9%E7%B3%BB%E7%BB%9Ffont"><font color=#FFAEB9>系统</font></a></li>
 </ul>
 </li>
 </ul>
@@ -158,9 +159,9 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="http://localhost:4000/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/">
+            <a href="http://localhost:4000/post/kettle-ji-lu/">
               <h3 class="post-title">
-                N1安装armbian-&gt;Centos7并换源
+                Kettle记录
               </h3>
             </a>
           </div>

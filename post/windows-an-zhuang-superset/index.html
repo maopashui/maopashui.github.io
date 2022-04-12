@@ -1,0 +1,266 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Windows安装Superset | 猫怕水的博客</title>
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1649767233022">
+<link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
+<link rel="stylesheet" href="https://s3.pstatp.com/cdn/expire-1-y/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+
+<script src="https://s3.pstatp.com/cdn/expire-1-y/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://localhost:4000">
+  <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1649767233022" alt="">
+  </a>
+  <h1 class="site-title">
+    猫怕水的博客
+  </h1>
+  <p class="site-description">
+    纸上得来终觉浅，绝知此事要躬行
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="http://localhost:4000/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="http://localhost:4000/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="http://localhost:4000/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="http://localhost:4000/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Windows安装Superset
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-15
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://localhost:4000/tag/ZEn218Hjw/" class="post-tag">
+                  # python
+                </a>
+              
+                <a href="http://localhost:4000/tag/Tc-Rkne_Fa/" class="post-tag">
+                  # flask
+                </a>
+              
+                <a href="http://localhost:4000/tag/TuPG0Kb_nh/" class="post-tag">
+                  # superset
+                </a>
+              
+                <a href="http://localhost:4000/tag/rUk6qEqqNt/" class="post-tag">
+                  # 可视化
+                </a>
+              
+                <a href="http://localhost:4000/tag/fLoV-OI0U/" class="post-tag">
+                  # windows
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>💻搭建系统：Windows10 企业版 LTSB<br>
+⌨️可视化系统：Superset</p>
+<!-- more -->
+<p>创建Superset python虚拟环境<br>
+<img src="https://img.imgdb.cn/item/6008dba73ffa7d37b31d020d.jpg" alt="1610693699538" loading="lazy"></p>
+<p>安装superset<br>
+<img src="https://img.imgdb.cn/item/6008dba23ffa7d37b31d00d0.jpg" alt="1610693686534" loading="lazy"><br>
+然后执行安装命令</p>
+<pre><code class="language-shell">pip install wtforms_json flask_compress celery flask_migrate flask_talisman flask_caching sqlparse bleach markdown numpy pandas parsedatetime pathlib2 simplejson humanize geohash polyline geopy cryptography backoff msgpack pyarrow contextlib2 croniter retry selenium isodate -i https://pypi.douban.com/simple
+</code></pre>
+<p>坑：Microsoft Visual C++ is requird<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf68a.jpg" alt="1610693666385" loading="lazy"><br>
+解决办法：安装Microsoft Visual C++ 14.0 tools http://go.microsoft.com/fwlink/?LinkId=691126 这个工具安装有几个G,安装速度尚可</p>
+<p>对于安装不成功的包，示例如下</p>
+<pre><code class="language-shell">py -3 -m pip install pandas -i https://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+</code></pre>
+<p>或手动在https://pypi.org/project/   或 https://pypi.tuna.tsinghua.edu.cn/simple 中找对应的包进行安装</p>
+<pre><code class="language-shell">python -m pip install pandas-1.2.0-cp38-cp38-win_amd64.whl
+</code></pre>
+<p>进入虚拟环境 superset/bin路径下，初始化数据库</p>
+<p>如果使用其他数据库请先修改config.py文件配置</p>
+<pre><code class="language-shell">(venv) D:\workspace\superset\venv\Lib\site-packages\superset\bin&gt;python superset db upgrade
+</code></pre>
+<p>报错1<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf686.png" alt="1610693642732" loading="lazy"></p>
+<p>解决方式是：</p>
+<p>geohash这个组件安装之后在site-packages下其目录是大写的&quot;Geohash&quot;，这导致geohash这个组件pip install之后，仍然报找不到。我们把文件夹名&quot;Geohash&quot;修改为“geohash”。再将geohash文件夹下_<em>init</em>_.py文件，用文本打开，里面的from geohash修改成 from .geohash。<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf680.png" alt="1610693626515" loading="lazy"><br>
+<em>init</em>.py文件：<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf67c.png" alt="1610693604380" loading="lazy"></p>
+<p>报错2：<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf67a.png" alt="1610693586743" loading="lazy"><br>
+解决方式是：</p>
+<p>手动安装cryptography</p>
+<pre><code class="language-shell">python -m pip install D:\workspace\superset\cryptography-3.2.1-cp38-cp38-win_amd64.whl
+</code></pre>
+<p>同时建议安装低版本sqlalchemy</p>
+<pre><code class="language-shell">pip install SQLAlchemy==1.2.18
+</code></pre>
+<p>报错3：<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf087.png" alt="1610693401718" loading="lazy"><br>
+解决方式是：<br>
+Python3.8不再支持time.clock，但在调用时依然包含该方法；<br>
+有效处理：<br>
+用time.perf_counter()替换</p>
+<pre><code>import time
+
+tis1 =time.perf_counter()
+print(&quot;等待5秒......&quot;)
+time.sleep(5)
+tis2=time.perf_counter()
+print(tis2-tis1)
+</code></pre>
+<p>报错4：<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf089.png" alt="1610693433164" loading="lazy"><br>
+解决方法：</p>
+<p>手动安装pyarrow</p>
+<pre><code class="language-shell">python -m pip install D:\workspace\superset\pyarrow-2.0.0-cp38-cp38-win_amd64.whl
+</code></pre>
+<p>执行superset相关命令</p>
+<pre><code class="language-shell">fabmanager create-admin --app superset
+或下面的命令，建议下面这种方式
+set FLASK_APP=superset（解决报错AttributeError: 'NoneType' object has no attribute 'auth_type'）
+flask fab create-admin
+</code></pre>
+<p>坑：</p>
+<figure data-type="image" tabindex="1"><img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf08d.jpg" alt="1610693475915" loading="lazy"></figure>
+<p>解决办法：pip install flask-appbuilder<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf092.jpg" alt="1610693525828" loading="lazy"><br>
+报错：<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf097.png" alt="1610693546986" loading="lazy"><br>
+解决方法：在superset/bin下执行</p>
+<pre><code class="language-shell">python superset fab create-admin
+</code></pre>
+<p>然后初始化系统并加载实例</p>
+<pre><code class="language-shell">python superset init
+python superset load-examples
+</code></pre>
+<p>注意在load-examples这步由于raw.githubusercontent.com国内网络访问出现问题，所以请科学上网一下。</p>
+<p>最后运行</p>
+<pre><code class="language-shell">python superset run
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://localhost:4000/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/">
+              <h3 class="post-title">
+                利用vlmcsd搭建KMS激活服务器在线激活Win系统
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

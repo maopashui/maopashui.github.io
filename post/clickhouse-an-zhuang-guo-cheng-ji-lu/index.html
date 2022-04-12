@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>N1安装docker | 猫怕水的博客</title>
+<title>ClickHouse安装过程记录 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1649767233022">
 <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
@@ -73,83 +73,82 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              N1安装docker
+              ClickHouse安装过程记录
             </h2>
             <div class="post-info">
               <span>
-                2019-07-04
+                2021-05-13
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
-              
-                <a href="http://localhost:4000/tag/oNRJjJLaq/" class="post-tag">
-                  # docker
-                </a>
-              
-                <a href="http://localhost:4000/tag/DhUjkRMZfs/" class="post-tag">
-                  # N1盒子
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
-<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
-sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
+                <p>安装环境：Centos7<br>
+先在centos添加国内源<br>
+然后添加官方存储库：</p>
+<pre><code class="language-shell">sudo yum install yum-utils
+sudo rpm --import https://repo.clickhouse.tech/CLICKHOUSE-KEY.GPG
+sudo yum-config-manager --add-repo https://repo.clickhouse.tech/rpm/stable/x86_64
+sudo yum install clickhouse-server clickhouse-client -y
 </code></pre>
-<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
-<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
-<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
-<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
-<pre><code class="language-shell">mkdir -p /etc/docker
-
-tee /etc/docker/daemon.json &lt;&lt;-'EOF'
-{
-&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
-}
-EOF
-
-systemctl daemon-reload #刷新docker配置
-
-systemctl restart docker #重启docker服务
+<p>默认安装在/etc/clickhouse-server、/etc/clickhouse-client<br>
+在centos7上，启动命令</p>
+<pre><code class="language-shell">systemctl start clickhouse-server
 </code></pre>
-<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
-<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
+<p>官方启动</p>
+<pre><code class="language-text">启动 
+如果没有service，可以运行如下命令在后台启动服务：
 
-docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
+$ sudo /etc/init.d/clickhouse-server start
+日志文件将输出在/var/log/clickhouse-server/文件夹。
+
+如果服务器没有启动，检查/etc/clickhouse-server/config.xml中的配置。
+
+您也可以手动从控制台启动服务器:
+
+$ clickhouse-server --config-file=/etc/clickhouse-server/config.xml
 </code></pre>
-<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
+<p>查看是否启动</p>
+<pre><code class="language-shell">$ clickhouse-client
+:) SELECT 1
+</code></pre>
+<p>其他需要注意的地方，<br>
+1、9000端口占用,clickhouse启动报错，修改/etc/clickhouse-server/config.xml<br>
+这里主要修改tcp_port即可，默认是9000</p>
+<pre><code class="language-shell">clickhouse-client --port 端口
+</code></pre>
+<p>2、开启远程连接<br>
+修改/etc/clickhouse-server/config.xml，将&lt;listen_host&gt;::&lt;listen_host&gt;的注释取消掉<br>
+重启服务</p>
+<pre><code class="language-shell">systemctl restart clickhouse-server
+</code></pre>
+<p>3、配置default的密码<br>
+设置用户名密码<br>
+1.CLICKHOUSE的密码有2种形式，一种是明文，一种是写SHA256SUM的HASH值<br>
+官方不建议直接写明文密码，可以用以下命令生成密码</p>
+<pre><code class="language-shell">PASSWORD=$(base64 &lt; /dev/urandom | head -c8); echo &quot;$PASSWORD&quot;; echo -n &quot;$PASSWORD&quot; | sha256sum | tr -d '-'
+</code></pre>
+<p>这样可以得到两行数据，第一行是密码明文，第二行是密码密文<br>
+ClickHouse的配置文件默认地址 /etc/clickhouse/users.xml<br>
+找到users --&gt; default --&gt; 标签下的password修改成password_sha256_hex，并把密文填进去</p>
+<pre><code class="language-xml">&lt;password_sha256_hex&gt;密码密文&lt;/password_sha256_hex&gt;
+</code></pre>
+<p>修改密码后，clickhouse-client需变更连接方式</p>
+<pre><code class="language-shell">clickhouse-client -h ip地址 -d default -m -u default --password 密码明文
+</code></pre>
+<p>参考连接：</p>
+<blockquote>
+<p>https://clickhouse.tech/docs/zh/getting-started/install/<br>
+https://blog.csdn.net/chengyuqiang/article/details/108534587</p>
+</blockquote>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%89%A7%E8%A1%8C">下载安装脚本并执行</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F">配置docker镜像加速</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86portainer">安装docker图形化管理Portainer</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -158,9 +157,9 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="http://localhost:4000/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/">
+            <a href="http://localhost:4000/post/windows-an-zhuang-superset/">
               <h3 class="post-title">
-                N1安装armbian-&gt;Centos7并换源
+                Windows安装Superset
               </h3>
             </a>
           </div>

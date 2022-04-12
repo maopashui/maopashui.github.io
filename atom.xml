@@ -1,19 +1,358 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://maopashui.github.io/</id>
+    <id>http://localhost:4000</id>
     <title>猫怕水的博客</title>
-    <updated>2020-05-07T02:14:35.533Z</updated>
+    <updated>2022-04-12T12:40:36.452Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://maopashui.github.io/"/>
-    <link rel="self" href="https://maopashui.github.io/atom.xml"/>
+    <link rel="alternate" href="http://localhost:4000"/>
+    <link rel="self" href="http://localhost:4000/atom.xml"/>
     <subtitle>纸上得来终觉浅，绝知此事要躬行</subtitle>
-    <logo>https://maopashui.github.io/images/avatar.png</logo>
-    <icon>https://maopashui.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, 猫怕水的博客</rights>
+    <logo>http://localhost:4000/images/avatar.png</logo>
+    <icon>http://localhost:4000/favicon.ico</icon>
+    <rights>All rights reserved 2022, 猫怕水的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux小记]]></title>
+        <id>http://localhost:4000/post/linux-xiao-ji/</id>
+        <link href="http://localhost:4000/post/linux-xiao-ji/">
+        </link>
+        <updated>2022-04-08T10:35:31.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-sh"># 删除指定日期前的文件 
+# -mtime +7 7天前的文件
+# -user 对应的用户
+# head -n 10 10个文件
+find ./ -mtime +7 -type f -user &quot;$USER&quot; -name ./*.log |head -n 10|xargs rm -f
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[常用网址记录]]></title>
+        <id>http://localhost:4000/post/chang-yong-wang-zhi-ji-lu/</id>
+        <link href="http://localhost:4000/post/chang-yong-wang-zhi-ji-lu/">
+        </link>
+        <updated>2022-04-03T09:45:42.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="font-color8b1a1a设计类font"><font color=#8B1A1A>设计类</font></h2>
+<h2 id="font-color8b1a1a工具类font"><font color=#8B1A1A>工具类</font></h2>
+<h3 id="font-colorffaeb9在线工具font"><font color=#FFAEB9>在线工具</font></h3>
+<p><a href="https://tool.lu/crontab/">crontab在线</a>	<br>
+<a href="http://www.jsons.cn/">json在线解析1</a>	<br>
+<a href="https://www.json.cn/">json在线解析2</a>	<br>
+<a href="https://www.free-api.com/">免费api接口</a>	<br>
+<a href=""></a>	    <a href=""></a>	    <a href=""></a>	    <a href=""></a></p>
+<h3 id="font-colorffaeb9镜像站font"><font color=#FFAEB9>镜像站</font></h3>
+<p>首推清华<br>
+<a href="http://mirrors.163.com/">网易</a>	<br>
+<a href="https://mirrors.huaweicloud.com/home">华为</a>	<br>
+<a href="https://mirrors.tuna.tsinghua.edu.cn/">清华</a>	<br>
+<a href=""></a>	    <a href=""></a>	    <a href=""></a></p>
+<h3 id="font-colorffaeb9图床font"><font color=#FFAEB9>图床</font></h3>
+<p><a href=""></a>	<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+<h3 id="font-colorffaeb9文件分享font"><font color=#FFAEB9>文件分享</font></h3>
+<p><a href=""></a>	<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+<h2 id="font-color8b1a1a学习类font"><font color=#8B1A1A>学习类</font></h2>
+<p><a href="https://www.liaoxuefeng.com/">廖雪峰</a>	<br>
+<a href="https://www.r2coding.com/">r2coding</a>	<br>
+<a href="https://www.bookstack.cn/">书栈网</a>	<br>
+<a href=""></a></p>
+<h2 id="font-color8b1a1avps购买font"><font color=#8B1A1A>VPS购买</font></h2>
+<p><a href="https://cloud.tencent.com/">腾讯云</a>	<br>
+<a href="https://www.aliyun.com/">阿里云</a>	<br>
+<a href=""></a>	<a href=""></a></p>
+<h2 id="font-color8b1a1a常用工具下载链接font"><font color=#8B1A1A>常用工具下载链接</font></h2>
+<h3 id="font-colorffaeb9数据库font"><font color=#FFAEB9>数据库</font></h3>
+<p><a href="https://www.postgresql.org/ftp/source/">PostgreSQL</a>	<br>
+<a href="http://www.mirrorservice.org/sites/ftp.mysql.com/Downloads/">MySQL</a>	<br>
+<a href=""></a>	<a href=""></a></p>
+<h3 id="font-colorffaeb9系统font"><font color=#FFAEB9>系统</font></h3>
+<p><a href="https://msdn.itellyou.cn/">MSDN我告诉你</a>	<br>
+<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+<p>方便复制↓↓↓↓↓</p>
+<p><a href=""></a>	<a href=""></a>	<a href=""></a>	<a href=""></a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Kettle记录]]></title>
+        <id>http://localhost:4000/post/kettle-ji-lu/</id>
+        <link href="http://localhost:4000/post/kettle-ji-lu/">
+        </link>
+        <updated>2022-04-03T04:20:43.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="调用js抽取数据库照片到本地">调用js抽取数据库照片到本地</h4>
+<p>结合表查询，就可以了，，表查询的字段sfzh和zp</p>
+<pre><code class="language-js">//Script here
+//文件路径
+var filepath = &quot;G:\\zp\\&quot;;
+//相片名称
+var filename = SFZH+&quot;.jpg&quot;;
+//写到硬盘
+var fos = new Packages.java.io.FileOutputStream(new Packages.java.io.File(filepath+filename));
+fos.write(ZP);
+fos.close();//关闭
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[端口转发]]></title>
+        <id>http://localhost:4000/post/duan-kou-zhuan-fa/</id>
+        <link href="http://localhost:4000/post/duan-kou-zhuan-fa/">
+        </link>
+        <updated>2022-04-03T04:13:19.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="windows">windows</h4>
+<pre><code class="language-shell">netsh interface portproxy add v4tov4 listenaddress=1.12.xx.xx listenport=52993 connectaddress=imap.exmail.qq.com connectport=993
+
+取消端口转发
+netsh interface portproxy delete v4tov4 listenaddress=1.12.xx.xx listenport=52993
+
+查看端口转发
+netsh interface portproxy show v4tov4
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DB2小记]]></title>
+        <id>http://localhost:4000/post/db2-xiao-ji/</id>
+        <link href="http://localhost:4000/post/db2-xiao-ji/">
+        </link>
+        <updated>2022-04-03T04:05:45.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="命令行相关">命令行相关</h4>
+<pre><code class="language-sh"># 打开调试输出开关，一般是存储过程中使用
+db2 set serveroutput on
+
+# db2设置终止符
+db2set db2options=-td\;  # 注意这里封号需要将结束符进行转义
+db2set db2options=-td@  # 这里则不需要转义
+
+# db2 import命令；先连接，再导入，再退出
+# 需要注意中间的插入更新方式，字符集设置，分割符设置，提交行数
+db2 connect to &lt;DBNAME&gt; user &lt;USERNAME&gt; using &lt;PASSWORD&gt; &amp;&amp; db2 'import form '&lt;filename&gt;' of del modified by codepage=1208 coldel0x1e commitcount 10000 insert_update into &lt;TABLENAME&gt; (COLNAME,...COLNAME,COLNAME)' &amp;&amp; db2 terminate
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docker小记]]></title>
+        <id>http://localhost:4000/post/docker-xiao-ji/</id>
+        <link href="http://localhost:4000/post/docker-xiao-ji/">
+        </link>
+        <updated>2022-04-03T04:00:32.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="常用命令">常用命令</h4>
+<pre><code class="language-shell"># 查看有哪些docker运行
+docker ps
+# 查看有哪些镜像
+docker images
+# 进入docker命令行
+docker exec -it images_name bash
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Git 小记]]></title>
+        <id>http://localhost:4000/post/git-xiao-ji/</id>
+        <link href="http://localhost:4000/post/git-xiao-ji/">
+        </link>
+        <updated>2022-03-23T02:44:01.000Z</updated>
+        <content type="html"><![CDATA[<h5 id="常用命令">常用命令</h5>
+<pre><code class="language-sh"># 添加到缓存区
+git add .
+
+# 提交注释
+git commit -m &quot; comment &quot;
+
+# 提交到远程仓库
+git push 
+
+# 拉取仓库代码
+git clone http://xxxx.git
+
+# 同步远程仓库代码
+git pull
+
+# 查询当前.git指向的远程仓库地址
+git remote -v
+
+# 查看git日志
+git log
+
+# 查看git状态
+git status
+</code></pre>
+<h5 id="其他情况">其他情况</h5>
+<pre><code class="language-sh"># 修改commit
+# 1、仅commit未push
+git commit --amend
+# 修改相关信息 wq保存
+# 仅修改最近一次commit，且push
+# 同上方法，可能需要pull同步一下代码，
+
+# 2、修改之前的某次注释
+git rebase -i HEAD~2 # 2表示倒数第二次，会显示倒数两次的注释
+# 将注释前的pick 修改为 edit 
+git commit --amend
+git rebase continue
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ClickHouse安装过程记录]]></title>
+        <id>http://localhost:4000/post/clickhouse-an-zhuang-guo-cheng-ji-lu/</id>
+        <link href="http://localhost:4000/post/clickhouse-an-zhuang-guo-cheng-ji-lu/">
+        </link>
+        <updated>2021-05-13T08:06:51.000Z</updated>
+        <content type="html"><![CDATA[<p>安装环境：Centos7<br>
+先在centos添加国内源<br>
+然后添加官方存储库：</p>
+<pre><code class="language-shell">sudo yum install yum-utils
+sudo rpm --import https://repo.clickhouse.tech/CLICKHOUSE-KEY.GPG
+sudo yum-config-manager --add-repo https://repo.clickhouse.tech/rpm/stable/x86_64
+sudo yum install clickhouse-server clickhouse-client -y
+</code></pre>
+<p>默认安装在/etc/clickhouse-server、/etc/clickhouse-client<br>
+在centos7上，启动命令</p>
+<pre><code class="language-shell">systemctl start clickhouse-server
+</code></pre>
+<p>官方启动</p>
+<pre><code class="language-text">启动 
+如果没有service，可以运行如下命令在后台启动服务：
+
+$ sudo /etc/init.d/clickhouse-server start
+日志文件将输出在/var/log/clickhouse-server/文件夹。
+
+如果服务器没有启动，检查/etc/clickhouse-server/config.xml中的配置。
+
+您也可以手动从控制台启动服务器:
+
+$ clickhouse-server --config-file=/etc/clickhouse-server/config.xml
+</code></pre>
+<p>查看是否启动</p>
+<pre><code class="language-shell">$ clickhouse-client
+:) SELECT 1
+</code></pre>
+<p>其他需要注意的地方，<br>
+1、9000端口占用,clickhouse启动报错，修改/etc/clickhouse-server/config.xml<br>
+这里主要修改tcp_port即可，默认是9000</p>
+<pre><code class="language-shell">clickhouse-client --port 端口
+</code></pre>
+<p>2、开启远程连接<br>
+修改/etc/clickhouse-server/config.xml，将&lt;listen_host&gt;::&lt;listen_host&gt;的注释取消掉<br>
+重启服务</p>
+<pre><code class="language-shell">systemctl restart clickhouse-server
+</code></pre>
+<p>3、配置default的密码<br>
+设置用户名密码<br>
+1.CLICKHOUSE的密码有2种形式，一种是明文，一种是写SHA256SUM的HASH值<br>
+官方不建议直接写明文密码，可以用以下命令生成密码</p>
+<pre><code class="language-shell">PASSWORD=$(base64 &lt; /dev/urandom | head -c8); echo &quot;$PASSWORD&quot;; echo -n &quot;$PASSWORD&quot; | sha256sum | tr -d '-'
+</code></pre>
+<p>这样可以得到两行数据，第一行是密码明文，第二行是密码密文<br>
+ClickHouse的配置文件默认地址 /etc/clickhouse/users.xml<br>
+找到users --&gt; default --&gt; 标签下的password修改成password_sha256_hex，并把密文填进去</p>
+<pre><code class="language-xml">&lt;password_sha256_hex&gt;密码密文&lt;/password_sha256_hex&gt;
+</code></pre>
+<p>修改密码后，clickhouse-client需变更连接方式</p>
+<pre><code class="language-shell">clickhouse-client -h ip地址 -d default -m -u default --password 密码明文
+</code></pre>
+<p>参考连接：</p>
+<blockquote>
+<p>https://clickhouse.tech/docs/zh/getting-started/install/<br>
+https://blog.csdn.net/chengyuqiang/article/details/108534587</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Windows安装Superset]]></title>
+        <id>http://localhost:4000/post/windows-an-zhuang-superset/</id>
+        <link href="http://localhost:4000/post/windows-an-zhuang-superset/">
+        </link>
+        <updated>2021-01-15T06:47:27.000Z</updated>
+        <summary type="html"><![CDATA[<p>💻搭建系统：Windows10 企业版 LTSB<br>
+⌨️可视化系统：Superset</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>💻搭建系统：Windows10 企业版 LTSB<br>
+⌨️可视化系统：Superset</p>
+<!-- more -->
+<p>创建Superset python虚拟环境<br>
+<img src="https://img.imgdb.cn/item/6008dba73ffa7d37b31d020d.jpg" alt="1610693699538" loading="lazy"></p>
+<p>安装superset<br>
+<img src="https://img.imgdb.cn/item/6008dba23ffa7d37b31d00d0.jpg" alt="1610693686534" loading="lazy"><br>
+然后执行安装命令</p>
+<pre><code class="language-shell">pip install wtforms_json flask_compress celery flask_migrate flask_talisman flask_caching sqlparse bleach markdown numpy pandas parsedatetime pathlib2 simplejson humanize geohash polyline geopy cryptography backoff msgpack pyarrow contextlib2 croniter retry selenium isodate -i https://pypi.douban.com/simple
+</code></pre>
+<p>坑：Microsoft Visual C++ is requird<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf68a.jpg" alt="1610693666385" loading="lazy"><br>
+解决办法：安装Microsoft Visual C++ 14.0 tools http://go.microsoft.com/fwlink/?LinkId=691126 这个工具安装有几个G,安装速度尚可</p>
+<p>对于安装不成功的包，示例如下</p>
+<pre><code class="language-shell">py -3 -m pip install pandas -i https://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+</code></pre>
+<p>或手动在https://pypi.org/project/   或 https://pypi.tuna.tsinghua.edu.cn/simple 中找对应的包进行安装</p>
+<pre><code class="language-shell">python -m pip install pandas-1.2.0-cp38-cp38-win_amd64.whl
+</code></pre>
+<p>进入虚拟环境 superset/bin路径下，初始化数据库</p>
+<p>如果使用其他数据库请先修改config.py文件配置</p>
+<pre><code class="language-shell">(venv) D:\workspace\superset\venv\Lib\site-packages\superset\bin&gt;python superset db upgrade
+</code></pre>
+<p>报错1<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf686.png" alt="1610693642732" loading="lazy"></p>
+<p>解决方式是：</p>
+<p>geohash这个组件安装之后在site-packages下其目录是大写的&quot;Geohash&quot;，这导致geohash这个组件pip install之后，仍然报找不到。我们把文件夹名&quot;Geohash&quot;修改为“geohash”。再将geohash文件夹下_<em>init</em>_.py文件，用文本打开，里面的from geohash修改成 from .geohash。<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf680.png" alt="1610693626515" loading="lazy"><br>
+<em>init</em>.py文件：<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf67c.png" alt="1610693604380" loading="lazy"></p>
+<p>报错2：<br>
+<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf67a.png" alt="1610693586743" loading="lazy"><br>
+解决方式是：</p>
+<p>手动安装cryptography</p>
+<pre><code class="language-shell">python -m pip install D:\workspace\superset\cryptography-3.2.1-cp38-cp38-win_amd64.whl
+</code></pre>
+<p>同时建议安装低版本sqlalchemy</p>
+<pre><code class="language-shell">pip install SQLAlchemy==1.2.18
+</code></pre>
+<p>报错3：<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf087.png" alt="1610693401718" loading="lazy"><br>
+解决方式是：<br>
+Python3.8不再支持time.clock，但在调用时依然包含该方法；<br>
+有效处理：<br>
+用time.perf_counter()替换</p>
+<pre><code>import time
+
+tis1 =time.perf_counter()
+print(&quot;等待5秒......&quot;)
+time.sleep(5)
+tis2=time.perf_counter()
+print(tis2-tis1)
+</code></pre>
+<p>报错4：<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf089.png" alt="1610693433164" loading="lazy"><br>
+解决方法：</p>
+<p>手动安装pyarrow</p>
+<pre><code class="language-shell">python -m pip install D:\workspace\superset\pyarrow-2.0.0-cp38-cp38-win_amd64.whl
+</code></pre>
+<p>执行superset相关命令</p>
+<pre><code class="language-shell">fabmanager create-admin --app superset
+或下面的命令，建议下面这种方式
+set FLASK_APP=superset（解决报错AttributeError: 'NoneType' object has no attribute 'auth_type'）
+flask fab create-admin
+</code></pre>
+<p>坑：</p>
+<figure data-type="image" tabindex="1"><img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf08d.jpg" alt="1610693475915" loading="lazy"></figure>
+<p>解决办法：pip install flask-appbuilder<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf092.jpg" alt="1610693525828" loading="lazy"><br>
+报错：<br>
+<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf097.png" alt="1610693546986" loading="lazy"><br>
+解决方法：在superset/bin下执行</p>
+<pre><code class="language-shell">python superset fab create-admin
+</code></pre>
+<p>然后初始化系统并加载实例</p>
+<pre><code class="language-shell">python superset init
+python superset load-examples
+</code></pre>
+<p>注意在load-examples这步由于raw.githubusercontent.com国内网络访问出现问题，所以请科学上网一下。</p>
+<p>最后运行</p>
+<pre><code class="language-shell">python superset run
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[利用vlmcsd搭建KMS激活服务器在线激活Win系统]]></title>
-        <id>https://maopashui.github.io/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/</id>
-        <link href="https://maopashui.github.io/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/">
+        <id>http://localhost:4000/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/</id>
+        <link href="http://localhost:4000/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/">
         </link>
         <updated>2020-05-06T12:51:58.000Z</updated>
         <summary type="html"><![CDATA[<p>💻激活系统：Windows10 企业版 LTSC</p>
@@ -50,423 +389,6 @@ slmgr -dlv #显示激活信息
 <h6 id="六-不足之处">六、不足之处</h6>
 <p>该激活方式可能不能适应所有系统</p>
 <p>改激活方式有180的激活周期，到期需重新操作。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[整理一下Hexo的安装过程]]></title>
-        <id>https://maopashui.github.io/post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng/</id>
-        <link href="https://maopashui.github.io/post/zheng-li-yi-xia-hexo-de-an-zhuang-guo-cheng/">
-        </link>
-        <updated>2019-10-07T14:41:22.000Z</updated>
-        <summary type="html"><![CDATA[<p>🍡系统及环境：debian9.6/512m</p>
-<p>🍱环境及组件：git/nodejs10.16.3/npm6.9/pm2/hexo</p>
-<p>⛹️‍♀️安装路径为：/opt/</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>🍡系统及环境：debian9.6/512m</p>
-<p>🍱环境及组件：git/nodejs10.16.3/npm6.9/pm2/hexo</p>
-<p>⛹️‍♀️安装路径为：/opt/</p>
-<!-- more -->
-<p>Hexo官方文档：https://hexo.io/docs/</p>
-<p>中文文档：https://hexo.io/zh-cn/docs/</p>
-<h4 id="1-开始安装配置基本环境">1、开始安装配置基本环境</h4>
-<p>nodejs网址：https://nodejs.org/en/download/</p>
-<p>下载对应的nodejs包，这里采用打包好的二进制文件安装，debian对应的系统为linux64，复制好下载链接</p>
-<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/Qnqf6Zdu/1567313453464.png" alt="1567313453464" loading="lazy"></figure>
-<pre><code class="language-shell">###先安装git
-apt-get install git-core
-###安装nodejs/npm
-cd /opt
-wget https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz #下载
-tar xf node-v10.16.3-linux-x64.tar.xz #解压包
-mv node-v10.16.3-linux-x64.tar.xz nodejs
-###有两种方法添加全局，建立软连接或添加到环境变量，二选一
-###建立软连接
-ln -s /opt/nodejs/bin/node /usr/local/bin
-ln -s /opt/nodejs/bin/npm /usr/local/bin
-###添加到环境变量
-export NODEJS_HOME=/opt/nodejs
-export PATH=$PATH:$NODEJS_HOME/bin
-source /etc/profile #刷新环境变量
-###验证是否已变为全局，正常会显示对应的版本号
-node -v
-npm -v
-</code></pre>
-<h4 id="2-开始安装hexo">2、开始安装hexo</h4>
-<pre><code class="language-shell">npm install -g hexo-cli
-npm install hexo-server --save #安装hexo服务器,详见：https://hexo.io/zh-cn/docs/server
-hexo init myblog
-cd myblog
-npm install
-hexo server -p 5000 #启动hexo服务并制定端口5000运行，在浏览器输入http://IP:5000即可看到hexo页面了
-</code></pre>
-<h4 id="3-安装pm2将服务在后台运行">3、安装pm2将服务在后台运行</h4>
-<p>安装pm2</p>
-<pre><code class="language-shell">npm  install -g pm2
-</code></pre>
-<p>在myblog下新建一个hexo_run.js文件</p>
-<pre><code class="language-shell">vi /opt/myblog/hexo_run.js
-###将以下内容粘贴进来:wq保存退出
-var spawn = require('child_process').spawn;
-
-free = spawn('hexo', ['server', '-p 5000']);/* 其实就是等于执行hexo server -p 5000*/
-
-free.stdout.on('data', function (data) {
-
-    console.log('standard output:\n' + data);
-
-});
-
-free.stderr.on('data', function (data) {
-
-    console.log('standard error output:\n' + data);
-
-});
-
-free.on('exit', function (code, signal) {
-
-    console.log('child process eixt ,exit:' + code);
-
-});
-</code></pre>
-<p>运行pm2</p>
-<pre><code class="language-shell">pm2 start app.js
-###如果需要停止服务
-pm2 stop id #pm2 list可查询id
-</code></pre>
-<h4 id="4-如果需要配置主题可参考">4、如果需要配置主题可参考</h4>
-<p>官网制定主题全集：https://hexo.io/themes/</p>
-<p>觉得简洁好看的：https://github.com/yzzting/hexo-theme-MyFairLady --&gt;对应Demo：http://www.yzz1995.cn/</p>
-<p>自用的主题：https://github.com/aircloud/hexo-theme-aircloud 个人博客：http://45.141.102.45/</p>
-<h4 id="5-写博客">5、写博客</h4>
-<p>后续再添加</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[typora辅助hexo进行图片显示]]></title>
-        <id>https://maopashui.github.io/post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi/</id>
-        <link href="https://maopashui.github.io/post/typora-fu-zhu-hexo-jin-xing-tu-pian-xian-shi/">
-        </link>
-        <updated>2019-09-01T14:39:03.000Z</updated>
-        <content type="html"><![CDATA[<p>配置博客文件的所有图片存储到博客当前路径的同名文件夹中。</p>
-<p>注意：对应图片文件夹在命名时不能有.，例如centos7.5，则会导致图片找不到路径，文件名可以修改为centos7-5,里面的标题取正确即可（即md文件名同对应图片文件夹在同一路径下且名字需要相同，不可出现'.'）。</p>
-<h4 id="1-修改根目录的_configyml文件">1. 修改根目录的_config.yml文件</h4>
-<pre><code class="language-yaml">post_asset_folder: true
-</code></pre>
-<h4 id="2配置typora解决图片存储问题">2.配置typora，解决图片存储问题。</h4>
-<p>配置typora，以使文件的所有图片都默认存储到当前路径的同名文件夹中。有三种配置typora方式。</p>
-<p>a. 修改博客项目配置</p>
-<p>在项目的scaffolds-&gt;post.md文件中，增加配置</p>
-<pre><code class="language-yaml">typora-copy-images-to: {{ title }} 
-</code></pre>
-<p>采用此方法，每次调用 <code>hexo new filename</code> 都会自动配置存储文件路径，供typora识别。</p>
-<p>b. 直接在md文件中的Front-matter增加配置</p>
-<pre><code class="language-yaml">typora-copy-images-to: ./博客名
-</code></pre>
-<p>c. 点击编辑-&gt;图片工具-&gt; 当插入本地文件时-&gt;复制到文件夹，修正博客图片存储路径。</p>
-<h4 id="3图片展示">3.图片展示</h4>
-<pre><code class="language-yaml">![图片说明](图片.jpg)
-</code></pre>
-<p>参考链接：https://www.jianshu.com/p/81a40a2c6514</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Centos6.5安装postgresql]]></title>
-        <id>https://maopashui.github.io/post/centos65-an-zhuang-postgresql/</id>
-        <link href="https://maopashui.github.io/post/centos65-an-zhuang-postgresql/">
-        </link>
-        <updated>2019-07-05T10:01:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>🐶机器版本:CentOS release 6.5 (Final)</p>
-<p>🐱数据库版本：postgresql-9.6.11</p>
-<p>🐰解压在/opt路径下，安装在/opt路径下</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>🐶机器版本:CentOS release 6.5 (Final)</p>
-<p>🐱数据库版本：postgresql-9.6.11</p>
-<p>🐰解压在/opt路径下，安装在/opt路径下</p>
-<!-- more -->
-<h6 id="1关闭防火墙及selinux">1关闭防火墙及selinux</h6>
-<pre><code class="language-shell">vi /etc/sysconfig/selinux
-</code></pre>
-<pre><code class="language-shell">service iptables stop #临时关闭防火墙
-chkconfig iptables off #永久关闭防火墙
-</code></pre>
-<h6 id="2配置yum源安装依赖包">2配置yum源安装依赖包</h6>
-<pre><code class="language-shell">#进入yum路径下，备份原始repo，然后编辑CentOS-Base.repo
-cd /etc/yum.repos.d
-mkdir bak
-cp CentOS-* bak
-rm -rf CentOS-*
-cp ./bak/CentOS-Media.repo ./
-vi CentOS-Media.repo #填入指定的yum源，或者自己自建本地yum源
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="http://n1.x2ve.com:11444/api/public/dl/eGaSy1Xn/1562297983011.png" alt="1562297983011" loading="lazy"></figure>
-<pre><code class="language-shell">yum -y install gcc* readline-devel
-</code></pre>
-<h6 id="3开始安装">3开始安装</h6>
-<pre><code class="language-shell">#解压安装包
-tar -zxvf postgresql-9.9.11.tar.gz
-#设置用户密码
-adduser postgres
-passwd postgres
-#编译安装 将pg安装在/opt/pgsql路径下
-cd postgresql-9.6.11
-mkdir ../pgsql
-./configure --prefix=/opt/pgsql/
-gmake
-gmake install
-vi /etc/profile
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="http://n1.x2ve.com:11444/api/public/dl/HM9bF8pa/1562315115401.png" alt="1562315115401" loading="lazy"></figure>
-<pre><code class="language-shell">source /etc/profile #是环境变量即时生效
-mkdir /opt/pgsql/data #数据库存储路径
-chown postgres /opt/pgsql/data #给该路径授权
-su - postgres #进入postgres用户
-#以下初始化数据库命令需要添加了环境变量才能直接运行，否则绝对路径运行
-initdb -D pgsql/data/
-postgres -D pgsql/data/ &gt;pgsql/data/logfile 2&gt;&amp;1 &amp;
-pg_ctl start -D pgsql/data/
-</code></pre>
-<h6 id="4添加自启动">4添加自启动</h6>
-<pre><code class="language-shell">#需root用户下
-cd postgresql-9.6.11/contrib/start-scripts/
-chmod a+x linux
-cp linux /etc/init.d/postgresql
-vi /etc/init.d/postgresql
-</code></pre>
-<figure data-type="image" tabindex="3"><img src="http://n1.x2ve.com:11444/api/public/dl/x5m2v1la/1562316126649.png" alt="1562316126649" loading="lazy"></figure>
-<pre><code class="language-shell">service postgresql start #启动pg服务
-service postgresql restart #重启pg服务
-chkconfig --add postgresql #添加到开启自启
-</code></pre>
-<h6 id="远程访问连接">远程访问连接</h6>
-<pre><code class="language-shell">cd /opt/pgsql/data
-vi pg_hba.conf #添加一行 注意加密方式为md5
-</code></pre>
-<figure data-type="image" tabindex="4"><img src="http://n1.x2ve.com:11444/api/public/dl/4f916ik6/1562319275334.png" alt="1562319275334" loading="lazy"></figure>
-<pre><code class="language-shell">vi postgresql.conf #修改监听地址及端口还有最大连接数，连接数最好改为1000，不然一下子跑满了，就坑了
-</code></pre>
-<figure data-type="image" tabindex="5"><img src="http://n1.x2ve.com:11444/api/public/dl/h8CircQp/1562316939177.png" alt="1562316939177" loading="lazy"></figure>
-<pre><code class="language-shell">#最后重启服务，远程连接试试
-service postgresql restart
-</code></pre>
-<p>注意：可能postgres用户下任意密码都可以连接,处理方式为：</p>
-<p>su - postgres</p>
-<p>psql -U postgres -p 5432</p>
-<p>alter user postgres with password 'new passwd';</p>
-<p>原因可能数据库是用系统用户安装的，也可能是在pg_hba.conf路径下设置的加密方式为trust</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[N1安装docker]]></title>
-        <id>https://maopashui.github.io/post/n1-an-zhuang-docker/</id>
-        <link href="https://maopashui.github.io/post/n1-an-zhuang-docker/">
-        </link>
-        <updated>2019-07-04T14:37:48.000Z</updated>
-        <content type="html"><![CDATA[<h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
-<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
-sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
-</code></pre>
-<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
-<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
-<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
-<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
-<pre><code class="language-shell">mkdir -p /etc/docker
-
-tee /etc/docker/daemon.json &lt;&lt;-'EOF'
-{
-&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
-}
-EOF
-
-systemctl daemon-reload #刷新docker配置
-
-systemctl restart docker #重启docker服务
-</code></pre>
-<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
-<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
-
-docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
-</code></pre>
-<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[N1安装armbian->Centos7并换源]]></title>
-        <id>https://maopashui.github.io/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/</id>
-        <link href="https://maopashui.github.io/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/">
-        </link>
-        <updated>2019-07-04T13:16:24.000Z</updated>
-        <content type="html"><![CDATA[<h6 id="降级刷入安卓固件看电视必备">降级刷入安卓固件（看电视必备）</h6>
-<p>1、首先需要webpad2.2线刷包，降级包、刷机工具（N1,USB2.0公对公，u盘,hdmi线）</p>
-<p>2、原封机器，通电，鼠标点击固件4次，打开adb</p>
-<p>3、机器连接wifi，记录下ip地址</p>
-<p>4、同局域网下的机器，打开降级工具中的run.bat</p>
-<p>选择N1降级-&gt;输入N1IP地址-&gt;开始降级（会提示boot降级完毕，盒子重启中）-&gt;关闭窗口</p>
-<p>5、重新打开run.bat</p>
-<p>选择线刷模式-&gt;输入ip地址-&gt;按提示插入usb公对公线</p>
-<p>6、打开usb_burning_tool工具，注意该工具在xp以上系统的驱动需要手动添加过时驱动，否则无法获取到驱动信息</p>
-<p>导入webPad2.2固件-&gt;去掉右侧两个擦除的勾选-&gt;且在设备ID中有hub提示连接成功-&gt;点击开始，等待固件写入</p>
-<p>7、然后拔掉usb公对公线，断电重启，即可进入webpad2.2固件安卓界面，首次进入时间可能稍长，有几分钟，请等待。</p>
-<p>参考连接：https://www.cnblogs.com/HintLee/p/9866485.html</p>
-<h6 id="刷入armbian">刷入armbian</h6>
-<p>该处以armbian5.77为例，主要操作U盘部分，</p>
-<p>1、下载对应的armbian包，国外网盘速度很慢，建议找国内网盘下载</p>
-<p>2、使用img烧录镜像到u盘中</p>
-<p>3、将U盘插入关机状态N1，通电启动，armbian自动运行起来</p>
-<p>root/1234 第一次进去会提示创建普通用户，ctrl+c跳过</p>
-<p>4、修改/boot/uEnv.ini (注意dtb只在部分5.x版本才打包的phicomm的)</p>
-<pre><code class="language-shell">dtb_name=/dtb/meson-gxl-s905d-phicomm-n1.dtb
-</code></pre>
-<p>5、修改完成 sudo reboot</p>
-<p>6、由于负载过高，重新编译一下dtb</p>
-<pre><code class="language-shell"># 反编译原始n1 dtb文件为n1.dts
-dtc -I dtb -O dts -o n1.dts /boot/dtb/meson-gxl-s905d-phicomm-n1.dtb
-#用vi 或 nano打开n1.dts，将第183行注释掉。修改前：phandle = &lt;0x1e&gt;;  修改后： #phandle = &lt;0x1b&gt;;
-vi n1.dts
-#编译新的n1.dtb
-dtc -I dts -O dtb -o n1.dtb n1.dts
-# 复制n1.dtb到/boot/dtb中并修改相应uEnv.ini文件
-sudo cp -av n1.dtb /boot/dtb/meson-gxl-s905d-phicomm-n1-xiangsm.dtb
-sudo sed -i -e 's/-n1/-n1-xiangsm/' /boot/uEnv.ini
-</code></pre>
-<p>7、修改完成  sudo reboot</p>
-<p>8、如果需要刷入EMMC，则重启后./install.sh （由于需要装Centos7,故这步是需要的），然后poweroff，拔掉U盘，断电重启，之后自启是armbian系统了</p>
-<p>参考连接：https://www.right.com.cn/forum/thread-510423-1-1.html</p>
-<p>armbian下载网盘连接：&lt;https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/5.77/S905</p>
-<h4 id="在armbian基础上刷入centos7">在armbian基础上刷入Centos7</h4>
-<p>1、基于上面第8步基础，机器处于断电关闭状态，插上U盘，插电启动,使机器处于有线连接状态，<strong>centos7需要有线网络</strong></p>
-<p>2、下载centos包并将数据文件替换到armbian系统中去</p>
-<pre><code class="language-shell">cd /root
-#下载清华的centos7.4.1708包
-wget https://mirrors.tuna.tsinghua.edu.cn/centos-vault/altarch/7.4.1708/isos/aarch64/CentOS-7-aarch64-rootfs-7.4.1708.tar.xz
-mkdir /root/x
-#e2fsck -y 预先设定所有检查时的问题均回答[是]
-e2fsck -y /dev/mmcblk1p2
-mount /dev/mmcblk1p2 /root/x
-cd x
-rm -rf * #该处会出现error，可忽略
-cd /root
-tar -xvf CentOS-7-aarch64-rootfs-7.4.1708.tar.xz -C /root/x
-cd x/lib
-rm -rf modules firmware
-cp -rp /lib/modules .
-cp -rp /lib/firmware .
-cd /root
-umount x
-</code></pre>
-<p>3、power关机，拔掉U盘，断电重启，即可进入centos7</p>
-<p>root/centos 输入passwd即可重设密码</p>
-<p>4、设置yum源</p>
-<pre><code class="language-shell">#进入yum路径并备份 CentOS-Base.repo  CentOS-Sources.repo
-cd /etc/yum.repos.d/
-mkdir bak 
-mv Cent* bak
-#创建阿里源
-vi CentOS-Base.repo
-###输入如下内容###
-[base]
-name=CentOS-$releasever - Base
-baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/os/$basearch/
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
- 
-#released updates 
-[updates]
-name=CentOS-$releasever - Updates
-baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/updates/$basearch/
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
- 
-#additional packages that may be useful
-[extras]
-name=CentOS-$releasever - Extras
-baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/extras/$basearch/
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
-enabled=1
- 
-#additional packages that extend functionality of existing packages
-[centosplus]
-name=CentOS-$releasever - Plus
-baseurl=https://mirrors.aliyun.com/centos-altarch/$releasever/centosplus/$basearch/
-gpgcheck=1
-enabled=0
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7
-
-#创建epel.repo
-vi epel.repo
-###输入如下内容###
-[epel]
-name=Extra Packages for Enterprise Linux 7 - $basearch
-#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
-baseurl=https://mirrors.tuna.tsinghua.edu.cn/epel/7/$basearch
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-7&amp;arch=$basearch
-failovermethod=priority
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
- 
-[epel-debuginfo]
-name=Extra Packages for Enterprise Linux 7 - $basearch - Debug
-#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug
-baseurl=https://mirrors.tuna.tsinghua.edu.cn/epel/7/$basearch/debug
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&amp;arch=$basearch
-failovermethod=priority
-enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-gpgcheck=1
- 
-[epel-source]
-name=Extra Packages for Enterprise Linux 7 - $basearch - Source
-#baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS
-baseurl=https://mirrors.tuna.tsinghua.edu.cn/epel/7/SRPMS
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&amp;arch=$basearch
-failovermethod=priority
-enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-gpgcheck=1
-
-##下面的可以不用管了，本次系统yum源的校验没有问题
-cd /etc/pki/rpm-gpg/ #该路径下的KEY文件主要对yum源做校验
-</code></pre>
-<p>5、运行yum生成缓存</p>
-<pre><code class="language-shell">yum makecache
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-</code></pre>
-<p>参考连接：https://www.right.com.cn/forum/thread-429148-1-1.html</p>
-<p>https://blog.csdn.net/smart9527_zc/article/details/84976097</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://maopashui.github.io/post/hello-gridea/</id>
-        <link href="https://maopashui.github.io/post/hello-gridea/">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>

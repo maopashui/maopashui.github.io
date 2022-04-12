@@ -1,8 +1,8 @@
 <html>
   <head>
-    <meta charset="utf-8" />
+  <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>N1安装docker | 猫怕水的博客</title>
+<title>superset | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1649767233022">
 <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
@@ -70,103 +70,60 @@
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              N1安装docker
-            </h2>
-            <div class="post-info">
-              <span>
-                2019-07-04
-              </span>
-              <span>
-                1 min read
-              </span>
-              
-                <a href="http://localhost:4000/tag/oNRJjJLaq/" class="post-tag">
-                  # docker
-                </a>
-              
-                <a href="http://localhost:4000/tag/DhUjkRMZfs/" class="post-tag">
-                  # N1盒子
-                </a>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h6 id="下载安装脚本并执行">下载安装脚本并执行</h6>
-<pre><code class="language-sh">curl -fsSL https://get.docker.com -o get-docker.sh #下载docker安装脚本
-sh get-docker.sh --mirror Aliyun #配合阿里镜像加速
-</code></pre>
-<p>注意：可能会有警告,要求给docker指定一个用户，这样比较安全</p>
-<h6 id="配置docker镜像加速">配置docker镜像加速</h6>
-<p>进入 dev.aliyun.com 登录Ali控制台 找到对应的镜像加速服务</p>
-<p>我的是： https://9sbm1wfe.mirror.aliyuncs.com</p>
-<pre><code class="language-shell">mkdir -p /etc/docker
-
-tee /etc/docker/daemon.json &lt;&lt;-'EOF'
-{
-&quot;registry-mirrors&quot;: [&quot;https://9sbm1wfe.mirror.aliyuncs.com&quot;]
-}
-EOF
-
-systemctl daemon-reload #刷新docker配置
-
-systemctl restart docker #重启docker服务
-</code></pre>
-<h6 id="安装docker图形化管理portainer">安装docker图形化管理Portainer</h6>
-<pre><code class="language-shell">docker volume create portainer_data #给该服务创建一个容器
-
-docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:linux-arm64
-</code></pre>
-<p>注意：安装完毕，需在5分钟内配置好admin用户，否则portainer服务自动关闭</p>
-
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%89%A7%E8%A1%8C">下载安装脚本并执行</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F">配置docker镜像加速</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86portainer">安装docker图形化管理Portainer</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
-            </div>
-          </article>
+        <div class="current-tag-container">
+            <h2 class="title">
+                标签：# superset
+            </h2> 
         </div>
+        <div class="post-container">
+  
+    <article class="post">
+      <a href="http://localhost:4000/post/windows-an-zhuang-superset/">
+        <h2 class="post-title">Windows安装Superset</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2021-01-15
+        </span>
+        <span>
+          3 min read
+        </span>
+        
+          <a href="http://localhost:4000/tag/ZEn218Hjw/" class="post-tag">
+            # python
+          </a>
+        
+          <a href="http://localhost:4000/tag/Tc-Rkne_Fa/" class="post-tag">
+            # flask
+          </a>
+        
+          <a href="http://localhost:4000/tag/TuPG0Kb_nh/" class="post-tag">
+            # superset
+          </a>
+        
+          <a href="http://localhost:4000/tag/rUk6qEqqNt/" class="post-tag">
+            # 可视化
+          </a>
+        
+          <a href="http://localhost:4000/tag/fLoV-OI0U/" class="post-tag">
+            # windows
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        <p>💻搭建系统：Windows10 企业版 LTSB<br>
+⌨️可视化系统：Superset</p>
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="http://localhost:4000/post/n1-an-zhuang-armbian-greatercentos7-bing-huan-yuan/">
-              <h3 class="post-title">
-                N1安装armbian-&gt;Centos7并换源
-              </h3>
-            </a>
-          </div>
-        
+      </div>
+    </article>
+  
+</div>
 
-        
+        <div class="pagination-container">
+  
+  
+</div>
 
         <div class="site-footer">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
