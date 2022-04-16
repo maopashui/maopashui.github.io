@@ -1,19 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://maopashui.github.io/</id>
     <title>猫怕水的博客</title>
-    <updated>2022-04-12T12:40:36.452Z</updated>
+    <updated>2022-04-16T11:38:40.927Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://maopashui.github.io/"/>
+    <link rel="self" href="https://maopashui.github.io//atom.xml"/>
     <subtitle>纸上得来终觉浅，绝知此事要躬行</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://maopashui.github.io//images/avatar.png</logo>
+    <icon>https://maopashui.github.io//favicon.ico</icon>
     <rights>All rights reserved 2022, 猫怕水的博客</rights>
     <entry>
+        <title type="html"><![CDATA[Caddy代理服务]]></title>
+        <id>https://maopashui.github.io//post/caddy-dai-li-fu-wu/</id>
+        <link href="https://maopashui.github.io//post/caddy-dai-li-fu-wu/">
+        </link>
+        <updated>2022-04-16T04:58:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>在windows机上快速代理web服务，生成自签SSL证书</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在windows机上快速代理web服务，生成自签SSL证书</p>
+<!-- more -->
+<p>参考文档：<a href="https://dengxiaolong.com/caddy/zh/http.header.html">Caddy中文文档</a></p>
+<h5 id="下载">下载</h5>
+<p><a href="https://caddyserver.com/download.html">caddy下载</a></p>
+<p><a href="https://github.com/FiloSottile/mkcert/releases">mkcert下载</a></p>
+<h5 id="caddy部分">Caddy部分</h5>
+<p>Caddyfile</p>
+<p>header path -name 这里是设置响应头信息，path指路径，-是隐藏该响应标头，+为添加，详见文档http.header节</p>
+<pre><code class="language-ini">:443 {
+ encode gzip
+ header /* -server
+ tls \xxx\caddy\multi.crt \xxx\caddy\multi.key
+ reverse_proxy 127.0.0.1:3000
+}
+</code></pre>
+<p>caddy启动命令</p>
+<pre><code class="language-sh">caddy run # 将Caddyfile文件放入同路径，默认会启用配置文件
+</code></pre>
+<h5 id="mkcert生成证书">mkcert生成证书</h5>
+<pre><code class="language-sh"># 示例
+mkcert -key-file multi.key -cert-file multi.crt *.domain 127.0.0.1 192.168.1.1
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Git 小记]]></title>
+        <id>https://maopashui.github.io//post/git-xiao-ji/</id>
+        <link href="https://maopashui.github.io//post/git-xiao-ji/">
+        </link>
+        <updated>2022-04-13T03:20:52.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h5 id="常用命令">常用命令</h5>
+<pre><code class="language-sh"># 添加到缓存区
+git add .
+
+# 提交注释
+git commit -m &quot; comment &quot;
+
+# 提交到远程仓库
+git push 
+
+# 拉取仓库代码
+git clone http://xxxx.git
+
+# 同步远程仓库代码
+git pull
+
+# 查询当前.git指向的远程仓库地址
+git remote -v
+
+# 查看git日志
+git log
+
+# 查看git状态
+git status
+
+# 查看分支
+git branch
+git branch -avv #看本地
+git branch -r # 看远程分支
+
+# 创建并切换到本地分支
+git checkout -b 本地分支名 origin/远程分支名
+git push orgigin 本地分支名:远程分支名
+
+同步远程分支到本地
+git pull origin 远程分支名:本地分支名
+</code></pre>
+<h5 id="其他情况">其他情况</h5>
+<pre><code class="language-sh"># 修改commit
+# 1、仅commit未push
+# 仅修改最近一次commit，且push
+git commit --amend
+# 修改相关信息 wq保存
+# 如果push不成功，可能需要pull同步一下代码，
+
+# 2、修改之前的某次注释
+git rebase -i HEAD~2 # 2表示倒数第二次，会显示倒数两次的注释
+# 将注释前的pick 修改为 edit 
+git commit --amend
+git rebase continue
+
+# 3、 仅add未commit
+git reset HEAD
+
+# 4、还原本次所有修改，未git add 
+git checkout -- * //还原全部文件
+git checkout -- aaa.txt //还原指定文件
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Linux小记]]></title>
-        <id>http://localhost:4000/post/linux-xiao-ji/</id>
-        <link href="http://localhost:4000/post/linux-xiao-ji/">
+        <id>https://maopashui.github.io//post/linux-xiao-ji/</id>
+        <link href="https://maopashui.github.io//post/linux-xiao-ji/">
         </link>
         <updated>2022-04-08T10:35:31.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-sh"># 删除指定日期前的文件 
@@ -27,8 +127,8 @@ find ./ -mtime +7 -type f -user &quot;$USER&quot; -name ./*.log |head -n 10|xarg
     </entry>
     <entry>
         <title type="html"><![CDATA[常用网址记录]]></title>
-        <id>http://localhost:4000/post/chang-yong-wang-zhi-ji-lu/</id>
-        <link href="http://localhost:4000/post/chang-yong-wang-zhi-ji-lu/">
+        <id>https://maopashui.github.io//post/chang-yong-wang-zhi-ji-lu/</id>
+        <link href="https://maopashui.github.io//post/chang-yong-wang-zhi-ji-lu/">
         </link>
         <updated>2022-04-03T09:45:42.000Z</updated>
         <content type="html"><![CDATA[<h2 id="font-color8b1a1a设计类font"><font color=#8B1A1A>设计类</font></h2>
@@ -72,8 +172,8 @@ find ./ -mtime +7 -type f -user &quot;$USER&quot; -name ./*.log |head -n 10|xarg
     </entry>
     <entry>
         <title type="html"><![CDATA[Kettle记录]]></title>
-        <id>http://localhost:4000/post/kettle-ji-lu/</id>
-        <link href="http://localhost:4000/post/kettle-ji-lu/">
+        <id>https://maopashui.github.io//post/kettle-ji-lu/</id>
+        <link href="https://maopashui.github.io//post/kettle-ji-lu/">
         </link>
         <updated>2022-04-03T04:20:43.000Z</updated>
         <content type="html"><![CDATA[<h4 id="调用js抽取数据库照片到本地">调用js抽取数据库照片到本地</h4>
@@ -92,8 +192,8 @@ fos.close();//关闭
     </entry>
     <entry>
         <title type="html"><![CDATA[端口转发]]></title>
-        <id>http://localhost:4000/post/duan-kou-zhuan-fa/</id>
-        <link href="http://localhost:4000/post/duan-kou-zhuan-fa/">
+        <id>https://maopashui.github.io//post/duan-kou-zhuan-fa/</id>
+        <link href="https://maopashui.github.io//post/duan-kou-zhuan-fa/">
         </link>
         <updated>2022-04-03T04:13:19.000Z</updated>
         <content type="html"><![CDATA[<h4 id="windows">windows</h4>
@@ -109,8 +209,8 @@ netsh interface portproxy show v4tov4
     </entry>
     <entry>
         <title type="html"><![CDATA[DB2小记]]></title>
-        <id>http://localhost:4000/post/db2-xiao-ji/</id>
-        <link href="http://localhost:4000/post/db2-xiao-ji/">
+        <id>https://maopashui.github.io//post/db2-xiao-ji/</id>
+        <link href="https://maopashui.github.io//post/db2-xiao-ji/">
         </link>
         <updated>2022-04-03T04:05:45.000Z</updated>
         <content type="html"><![CDATA[<h4 id="命令行相关">命令行相关</h4>
@@ -129,8 +229,8 @@ db2 connect to &lt;DBNAME&gt; user &lt;USERNAME&gt; using &lt;PASSWORD&gt; &amp;
     </entry>
     <entry>
         <title type="html"><![CDATA[Docker小记]]></title>
-        <id>http://localhost:4000/post/docker-xiao-ji/</id>
-        <link href="http://localhost:4000/post/docker-xiao-ji/">
+        <id>https://maopashui.github.io//post/docker-xiao-ji/</id>
+        <link href="https://maopashui.github.io//post/docker-xiao-ji/">
         </link>
         <updated>2022-04-03T04:00:32.000Z</updated>
         <content type="html"><![CDATA[<h4 id="常用命令">常用命令</h4>
@@ -144,56 +244,9 @@ docker exec -it images_name bash
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Git 小记]]></title>
-        <id>http://localhost:4000/post/git-xiao-ji/</id>
-        <link href="http://localhost:4000/post/git-xiao-ji/">
-        </link>
-        <updated>2022-03-23T02:44:01.000Z</updated>
-        <content type="html"><![CDATA[<h5 id="常用命令">常用命令</h5>
-<pre><code class="language-sh"># 添加到缓存区
-git add .
-
-# 提交注释
-git commit -m &quot; comment &quot;
-
-# 提交到远程仓库
-git push 
-
-# 拉取仓库代码
-git clone http://xxxx.git
-
-# 同步远程仓库代码
-git pull
-
-# 查询当前.git指向的远程仓库地址
-git remote -v
-
-# 查看git日志
-git log
-
-# 查看git状态
-git status
-</code></pre>
-<h5 id="其他情况">其他情况</h5>
-<pre><code class="language-sh"># 修改commit
-# 1、仅commit未push
-git commit --amend
-# 修改相关信息 wq保存
-# 仅修改最近一次commit，且push
-# 同上方法，可能需要pull同步一下代码，
-
-# 2、修改之前的某次注释
-git rebase -i HEAD~2 # 2表示倒数第二次，会显示倒数两次的注释
-# 将注释前的pick 修改为 edit 
-git commit --amend
-git rebase continue
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[ClickHouse安装过程记录]]></title>
-        <id>http://localhost:4000/post/clickhouse-an-zhuang-guo-cheng-ji-lu/</id>
-        <link href="http://localhost:4000/post/clickhouse-an-zhuang-guo-cheng-ji-lu/">
+        <id>https://maopashui.github.io//post/clickhouse-an-zhuang-guo-cheng-ji-lu/</id>
+        <link href="https://maopashui.github.io//post/clickhouse-an-zhuang-guo-cheng-ji-lu/">
         </link>
         <updated>2021-05-13T08:06:51.000Z</updated>
         <content type="html"><![CDATA[<p>安装环境：Centos7<br>
@@ -258,8 +311,8 @@ https://blog.csdn.net/chengyuqiang/article/details/108534587</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[Windows安装Superset]]></title>
-        <id>http://localhost:4000/post/windows-an-zhuang-superset/</id>
-        <link href="http://localhost:4000/post/windows-an-zhuang-superset/">
+        <id>https://maopashui.github.io//post/windows-an-zhuang-superset/</id>
+        <link href="https://maopashui.github.io//post/windows-an-zhuang-superset/">
         </link>
         <updated>2021-01-15T06:47:27.000Z</updated>
         <summary type="html"><![CDATA[<p>💻搭建系统：Windows10 企业版 LTSB<br>
@@ -347,48 +400,6 @@ python superset load-examples
 <p>最后运行</p>
 <pre><code class="language-shell">python superset run
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[利用vlmcsd搭建KMS激活服务器在线激活Win系统]]></title>
-        <id>http://localhost:4000/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/</id>
-        <link href="http://localhost:4000/post/li-yong-vlmcsd-da-jian-kms-ji-huo-fu-wu-qi-zai-xian-ji-huo-win-xi-tong/">
-        </link>
-        <updated>2020-05-06T12:51:58.000Z</updated>
-        <summary type="html"><![CDATA[<p>💻激活系统：Windows10 企业版 LTSC</p>
-<p>⌨️搭建系统：Linux</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>💻激活系统：Windows10 企业版 LTSC</p>
-<p>⌨️搭建系统：Linux</p>
-<!-- more -->
-<p>如果有钱，大家还是支持正版比较好。</p>
-<h6 id="一-下载解压上传">一、下载解压上传：</h6>
-<p><a href="https://github.com/Wind4/vlmcsd/releases">vlmcsd下载</a></p>
-<p>下载完毕进行解压操作，由于我使用的是linux搭建，</p>
-<p>把<font color=#CD6600>binaries\Linux\intel\static\</font>下的<font color=green>vlmcsd-x64-musl-static</font>上传至Linux<font color=#CD6600>/usr/bin/</font>目录下并改名为<font color=green>vlmcsd</font></p>
-<h6 id="二-给予执行权限">二、给予执行权限</h6>
-<pre><code class="language-shell">chmod +x /usr/bin/vlmcsd
-</code></pre>
-<h6 id="三-开启kms服务">三、开启KMS服务</h6>
-<pre><code class="language-shell">/usr/bin/vlmcsd -L 0.0.0.0:2333
-</code></pre>
-<p>默认为 1688 端口，激活时无需输入端口号，可以指定相应的端口号，如教程2333</p>
-<h6 id="四-验证服务是否开启">四、验证服务是否开启</h6>
-<p>回到Windows,进入<font color=#cd6600>binaries\Windows\intel\</font></p>
-<p>在地址栏输入CMD，并输入vlmcs-Windows-x64.exe 部署的IP+端口2333，显示successfly则部署成功</p>
-<pre><code class="language-powershell">vlmcs-Windows-x64.exe 192.168.0.111:2333
-</code></pre>
-<h6 id="五-执行授权命令">五、执行授权命令</h6>
-<pre><code class="language-powershell">slmgr.vbs /upk
-slmgr /ipk M7XTQ-FN8P5-TTKYV-9D4CC-J462D #激活不同的系统需要不同的激活码
-slmgr /skms 192.168.0.111:2333 #部署的IP+端口2333
-slmgr /ato
-slmgr /ato
-slmgr -dlv #显示激活信息
-</code></pre>
-<h6 id="六-不足之处">六、不足之处</h6>
-<p>该激活方式可能不能适应所有系统</p>
-<p>改激活方式有180的激活周期，到期需重新操作。</p>
 ]]></content>
     </entry>
 </feed>

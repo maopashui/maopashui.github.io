@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git 小记 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
-<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1649767233022">
+<link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1650109115774">
 <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
 <link rel="stylesheet" href="https://s3.pstatp.com/cdn/expire-1-y/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://maopashui.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://maopashui.github.io/">
-  <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1649767233022" alt="">
+  <img class="avatar" src="https://maopashui.github.io//images/avatar.png?v=1650109115774" alt="">
   </a>
   <h1 class="site-title">
     猫怕水的博客
@@ -77,10 +77,10 @@
             </h2>
             <div class="post-info">
               <span>
-                2022-03-23
+                2022-04-13
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
                 <a href="https://maopashui.github.io//tag/9gRmeLx7m/" class="post-tag">
@@ -91,7 +91,8 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h5 id="常用命令">常用命令</h5>
+                <!-- more -->
+<h5 id="常用命令">常用命令</h5>
 <pre><code class="language-sh"># 添加到缓存区
 git add .
 
@@ -115,20 +116,39 @@ git log
 
 # 查看git状态
 git status
+
+# 查看分支
+git branch
+git branch -avv #看本地
+git branch -r # 看远程分支
+
+# 创建并切换到本地分支
+git checkout -b 本地分支名 origin/远程分支名
+git push orgigin 本地分支名:远程分支名
+
+同步远程分支到本地
+git pull origin 远程分支名:本地分支名
 </code></pre>
 <h5 id="其他情况">其他情况</h5>
 <pre><code class="language-sh"># 修改commit
 # 1、仅commit未push
+# 仅修改最近一次commit，且push
 git commit --amend
 # 修改相关信息 wq保存
-# 仅修改最近一次commit，且push
-# 同上方法，可能需要pull同步一下代码，
+# 如果push不成功，可能需要pull同步一下代码，
 
 # 2、修改之前的某次注释
 git rebase -i HEAD~2 # 2表示倒数第二次，会显示倒数两次的注释
 # 将注释前的pick 修改为 edit 
 git commit --amend
 git rebase continue
+
+# 3、 仅add未commit
+git reset HEAD
+
+# 4、还原本次所有修改，未git add 
+git checkout -- * //还原全部文件
+git checkout -- aaa.txt //还原指定文件
 </code></pre>
 
               </div>
@@ -162,9 +182,9 @@ git rebase continue
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://maopashui.github.io//post/clickhouse-an-zhuang-guo-cheng-ji-lu/">
+            <a href="https://maopashui.github.io//post/linux-xiao-ji/">
               <h3 class="post-title">
-                ClickHouse安装过程记录
+                Linux小记
               </h3>
             </a>
           </div>

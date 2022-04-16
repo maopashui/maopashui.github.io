@@ -1,8 +1,8 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>git | 猫怕水的博客</title>
+<title>Caddy代理服务 | 猫怕水的博客</title>
 <meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
 <link rel="shortcut icon" href="https://maopashui.github.io//favicon.ico?v=1650109115774">
 <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
@@ -70,42 +70,92 @@
   </div>
 </div>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# git
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://maopashui.github.io//post/git-xiao-ji/">
-        <h2 class="post-title">Git 小记</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2022-04-13
-        </span>
-        <span>
-          2 min read
-        </span>
-        
-          <a href="https://maopashui.github.io//tag/9gRmeLx7m/" class="post-tag">
-            # git
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Caddy代理服务
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-04-16
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://maopashui.github.io//tag/hOanGcMGW/" class="post-tag">
+                  # caddy
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>在windows机上快速代理web服务，生成自签SSL证书</p>
+<!-- more -->
+<p>参考文档：<a href="https://dengxiaolong.com/caddy/zh/http.header.html">Caddy中文文档</a></p>
+<h5 id="下载">下载</h5>
+<p><a href="https://caddyserver.com/download.html">caddy下载</a></p>
+<p><a href="https://github.com/FiloSottile/mkcert/releases">mkcert下载</a></p>
+<h5 id="caddy部分">Caddy部分</h5>
+<p>Caddyfile</p>
+<p>header path -name 这里是设置响应头信息，path指路径，-是隐藏该响应标头，+为添加，详见文档http.header节</p>
+<pre><code class="language-ini">:443 {
+ encode gzip
+ header /* -server
+ tls \xxx\caddy\multi.crt \xxx\caddy\multi.key
+ reverse_proxy 127.0.0.1:3000
+}
+</code></pre>
+<p>caddy启动命令</p>
+<pre><code class="language-sh">caddy run # 将Caddyfile文件放入同路径，默认会启用配置文件
+</code></pre>
+<h5 id="mkcert生成证书">mkcert生成证书</h5>
+<pre><code class="language-sh"># 示例
+mkcert -key-file multi.key -cert-file multi.crt *.domain 127.0.0.1 192.168.1.1
+</code></pre>
 
-        <div class="pagination-container">
-  
-  
-</div>
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E4%B8%8B%E8%BD%BD">下载</a></li>
+<li><a href="#caddy%E9%83%A8%E5%88%86">Caddy部分</a></li>
+<li><a href="#mkcert%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6">mkcert生成证书</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://maopashui.github.io//post/git-xiao-ji/">
+              <h3 class="post-title">
+                Git 小记
+              </h3>
+            </a>
+          </div>
+        
+
+        
 
         <div class="site-footer">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
