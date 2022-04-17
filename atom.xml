@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://maopashui.github.io/</id>
+    <id>https://maopashui.github.io</id>
     <title>猫怕水的博客</title>
     <updated>2022-04-16T11:38:40.927Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://maopashui.github.io/"/>
+    <link rel="alternate" href="https://maopashui.github.io"/>
     <link rel="self" href="https://maopashui.github.io/atom.xml"/>
     <subtitle>纸上得来终觉浅，绝知此事要躬行</subtitle>
     <logo>https://maopashui.github.io/images/avatar.png</logo>
