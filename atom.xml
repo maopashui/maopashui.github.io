@@ -1,19 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://maopashui.github.io</id>
+    <id>https://www.x2ve.com</id>
     <title>猫怕水的博客</title>
-    <updated>2022-04-16T11:38:40.927Z</updated>
+    <updated>2022-09-28T02:21:14.515Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://maopashui.github.io"/>
-    <link rel="self" href="https://maopashui.github.io/atom.xml"/>
+    <link rel="alternate" href="https://www.x2ve.com"/>
+    <link rel="self" href="https://www.x2ve.com/atom.xml"/>
     <subtitle>纸上得来终觉浅，绝知此事要躬行</subtitle>
-    <logo>https://maopashui.github.io/images/avatar.png</logo>
-    <icon>https://maopashui.github.io/favicon.ico</icon>
+    <logo>https://www.x2ve.com/images/avatar.png</logo>
+    <icon>https://www.x2ve.com/favicon.ico</icon>
     <rights>All rights reserved 2022, 猫怕水的博客</rights>
     <entry>
+        <title type="html"><![CDATA[pipenv的基本使用]]></title>
+        <id>https://www.x2ve.com/post/pipenv-de-ji-ben-shi-yong/</id>
+        <link href="https://www.x2ve.com/post/pipenv-de-ji-ben-shi-yong/">
+        </link>
+        <updated>2022-07-03T05:50:58.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>Pipenv的作用</strong></p>
+<p>可以利用pipenv来实现同时管理项目中的python虚拟环境和相关包依赖。</p>
+<p><strong>使用步骤</strong></p>
+<ol>
+<li>cmd中输入命令 pip install pipenv 安装pipenv</li>
+<li>cmd切换路径到需要建立虚拟环境的项目目录下</li>
+<li>输入命令 pipenv install 开始安装虚拟环境</li>
+<li>安装完毕后输入命令 pipenv shell 进入虚拟环境</li>
+</ol>
+<p><strong>Pipfile文件</strong></p>
+<ul>
+<li>虚拟环境安装完毕后项目目录中将创建Pipfile/Pipfile.lock两个文件</li>
+<li>Pipfile：用于保存项目的python版本、依赖包等相关信息</li>
+<li>Pipfile.lock：用于对Pipfile的锁定</li>
+<li>Pipfile文件可以单独移放到其他项目内，用于项目虚拟环境的建立和依赖包的安装</li>
+</ul>
+<p><strong>常用命令</strong></p>
+<ul>
+<li>
+<p>pipenv install：</p>
+</li>
+<li>
+<ul>
+<li>若项目目录中虚拟环境未创建且无Pipfile文件，将安装虚拟环境并创建Pipfile文件</li>
+<li>若项目目录中虚拟环境未创建且有Pipfile文件，将根据Pipfile文件来安装相应python版本和依赖包</li>
+<li>若项目目录中虚拟环境已创建且有Pipfile文件，将根据Pipfile文件来安装依赖包</li>
+</ul>
+</li>
+<li>
+<p>pipenv install xx:：安装python包</p>
+</li>
+<li>
+<p>pipenv uninstall xx:：卸载python包</p>
+</li>
+<li>
+<p>pipenv shell：进入虚拟环境(项目目录下)</p>
+</li>
+<li>
+<p>exit：退出虚拟环境</p>
+</li>
+<li>
+<p>pipenv graph：显示包依赖关系</p>
+</li>
+<li>
+<p>pipenv --venv：显示虚拟环境安装路径</p>
+</li>
+</ul>
+<p>注意：如果在pycharm中使用完pipenv shell进入到虚拟环境路径，输入activate即可进入</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Windows开启WSL服务]]></title>
+        <id>https://www.x2ve.com/post/windows-kai-qi-wsl-fu-wu/</id>
+        <link href="https://www.x2ve.com/post/windows-kai-qi-wsl-fu-wu/">
+        </link>
+        <updated>2022-06-14T04:21:30.000Z</updated>
+        <content type="html"><![CDATA[<p>对系统的要求，应该是较新的win10 和win11可用</p>
+<h6 id="1-首先在控制面板-程序和功能中-选择启用或关闭windows功能勾选-适用linux的-windows子系统">1、首先在控制面板-程序和功能中-选择启用或关闭Windows功能，勾选 适用Linux的 Windows子系统</h6>
+<p>重启电脑</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.imgdb.cn/item/62a80dd10947543129fb9237.png" alt="" loading="lazy"></figure>
+<pre><code class="language-shell"># 在wsl服务启动后 可以使用wsl命令 常用的
+
+&gt; wsl -l -v # 查看当前电脑有哪些wsl系统及版本
+&gt; wsl -s linux_name # 指定默认系统
+&gt; wsl -d linux_name # 指定系统
+# 另外 wsl的命令可以直接作用到linux系统上，如
+&gt; wsl -- sudo vi /etc/profile # 可以直接修改linux的系统环境变量
+</code></pre>
+<h6 id="2-打开微软商店搜索linux或者自行下载">2、打开微软商店搜索linux或者自行下载</h6>
+<p>连接地址 https://docs.microsoft.com/zh-cn/windows/wsl/install-manual</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.imgdb.cn/item/62a80eb20947543129fca25a.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://pic.imgdb.cn/item/62a80ed90947543129fccfd6.png" alt="" loading="lazy"></figure>
+<h6 id="3-完了在开始菜单可以看到新安装的系统我这里是装的debian">3、完了在开始菜单可以看到新安装的系统，我这里是装的debian</h6>
+<figure data-type="image" tabindex="4"><img src="https://pic.imgdb.cn/item/62a80fae0947543129fdbc08.png" alt="" loading="lazy"></figure>
+<p>在cmd窗口输入wsl即可进入到系统中</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.imgdb.cn/item/62a80fe50947543129fdff30.png" alt="" loading="lazy"></figure>
+<pre><code class="language-shell"># 设置root密码
+$ sudo root passwd
+</code></pre>
+<h6 id="4-其他问题">4、其他问题</h6>
+<p>将默认安装的linux迁移到其他盘下面，也适用于不同电脑间的迁移</p>
+<p>1、工具 LxRunOffline，可在github上面查找</p>
+<p>2、执行命令行导出 导入</p>
+<pre><code class="language-shell">&gt; wsl --export distro_name file_name.tar # 导出
+&gt; wsl --import distro_name d:\install_location file_name.tar # 导入,注意安装路径
+&gt; wsl --unregister distro_name # 卸载原有的linux
+&gt; wsl -l # 查看系统
+</code></pre>
+<p>3、部分系统命令不能像其他系统一样正常使用，如systemctl</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Caddy代理服务]]></title>
-        <id>https://maopashui.github.io/post/caddy-dai-li-fu-wu/</id>
-        <link href="https://maopashui.github.io/post/caddy-dai-li-fu-wu/">
+        <id>https://www.x2ve.com/post/caddy-dai-li-fu-wu/</id>
+        <link href="https://www.x2ve.com/post/caddy-dai-li-fu-wu/">
         </link>
         <updated>2022-04-16T04:58:47.000Z</updated>
         <summary type="html"><![CDATA[<p>在windows机上快速代理web服务，生成自签SSL证书</p>
@@ -45,8 +142,8 @@ mkcert -key-file multi.key -cert-file multi.crt *.domain 127.0.0.1 192.168.1.1
     </entry>
     <entry>
         <title type="html"><![CDATA[Git 小记]]></title>
-        <id>https://maopashui.github.io/post/git-xiao-ji/</id>
-        <link href="https://maopashui.github.io/post/git-xiao-ji/">
+        <id>https://www.x2ve.com/post/git-xiao-ji/</id>
+        <link href="https://www.x2ve.com/post/git-xiao-ji/">
         </link>
         <updated>2022-04-13T03:20:52.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
@@ -68,6 +165,13 @@ git pull
 
 # 查询当前.git指向的远程仓库地址
 git remote -v
+
+# 删除/添加当前.git指向的远程仓库地址
+git remote rm xxx.git
+git remote add xxx.git
+
+git remote remove origin
+git remote add origin xxx.git
 
 # 查看git日志
 git log
@@ -112,8 +216,8 @@ git checkout -- aaa.txt //还原指定文件
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux小记]]></title>
-        <id>https://maopashui.github.io/post/linux-xiao-ji/</id>
-        <link href="https://maopashui.github.io/post/linux-xiao-ji/">
+        <id>https://www.x2ve.com/post/linux-xiao-ji/</id>
+        <link href="https://www.x2ve.com/post/linux-xiao-ji/">
         </link>
         <updated>2022-04-08T10:35:31.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-sh"># 删除指定日期前的文件 
@@ -121,14 +225,22 @@ git checkout -- aaa.txt //还原指定文件
 # -user 对应的用户
 # head -n 10 10个文件
 find ./ -mtime +7 -type f -user &quot;$USER&quot; -name ./*.log |head -n 10|xargs rm -f
+# 别名 alias
+alias ll='ls -l'
+以上是临时生效
+# 针对某个用户有效，在 ~/.bashrc中添加
+alias ll='ls -l'
+# 保存后 source ~/.bashrc生效
 
+# 分隔字符串 如 aa,bb,cc 分隔为 aa bb cc
+awk -F , '{print $1,$2,$3}'
 </code></pre>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[常用网址记录]]></title>
-        <id>https://maopashui.github.io/post/chang-yong-wang-zhi-ji-lu/</id>
-        <link href="https://maopashui.github.io/post/chang-yong-wang-zhi-ji-lu/">
+        <id>https://www.x2ve.com/post/chang-yong-wang-zhi-ji-lu/</id>
+        <link href="https://www.x2ve.com/post/chang-yong-wang-zhi-ji-lu/">
         </link>
         <updated>2022-04-03T09:45:42.000Z</updated>
         <content type="html"><![CDATA[<h2 id="font-color8b1a1a设计类font"><font color=#8B1A1A>设计类</font></h2>
@@ -172,8 +284,8 @@ find ./ -mtime +7 -type f -user &quot;$USER&quot; -name ./*.log |head -n 10|xarg
     </entry>
     <entry>
         <title type="html"><![CDATA[Kettle记录]]></title>
-        <id>https://maopashui.github.io/post/kettle-ji-lu/</id>
-        <link href="https://maopashui.github.io/post/kettle-ji-lu/">
+        <id>https://www.x2ve.com/post/kettle-ji-lu/</id>
+        <link href="https://www.x2ve.com/post/kettle-ji-lu/">
         </link>
         <updated>2022-04-03T04:20:43.000Z</updated>
         <content type="html"><![CDATA[<h4 id="调用js抽取数据库照片到本地">调用js抽取数据库照片到本地</h4>
@@ -192,8 +304,8 @@ fos.close();//关闭
     </entry>
     <entry>
         <title type="html"><![CDATA[端口转发]]></title>
-        <id>https://maopashui.github.io/post/duan-kou-zhuan-fa/</id>
-        <link href="https://maopashui.github.io/post/duan-kou-zhuan-fa/">
+        <id>https://www.x2ve.com/post/duan-kou-zhuan-fa/</id>
+        <link href="https://www.x2ve.com/post/duan-kou-zhuan-fa/">
         </link>
         <updated>2022-04-03T04:13:19.000Z</updated>
         <content type="html"><![CDATA[<h4 id="windows">windows</h4>
@@ -209,8 +321,8 @@ netsh interface portproxy show v4tov4
     </entry>
     <entry>
         <title type="html"><![CDATA[DB2小记]]></title>
-        <id>https://maopashui.github.io/post/db2-xiao-ji/</id>
-        <link href="https://maopashui.github.io/post/db2-xiao-ji/">
+        <id>https://www.x2ve.com/post/db2-xiao-ji/</id>
+        <link href="https://www.x2ve.com/post/db2-xiao-ji/">
         </link>
         <updated>2022-04-03T04:05:45.000Z</updated>
         <content type="html"><![CDATA[<h4 id="命令行相关">命令行相关</h4>
@@ -229,8 +341,8 @@ db2 connect to &lt;DBNAME&gt; user &lt;USERNAME&gt; using &lt;PASSWORD&gt; &amp;
     </entry>
     <entry>
         <title type="html"><![CDATA[Docker小记]]></title>
-        <id>https://maopashui.github.io/post/docker-xiao-ji/</id>
-        <link href="https://maopashui.github.io/post/docker-xiao-ji/">
+        <id>https://www.x2ve.com/post/docker-xiao-ji/</id>
+        <link href="https://www.x2ve.com/post/docker-xiao-ji/">
         </link>
         <updated>2022-04-03T04:00:32.000Z</updated>
         <content type="html"><![CDATA[<h4 id="常用命令">常用命令</h4>
@@ -240,165 +352,6 @@ docker ps
 docker images
 # 进入docker命令行
 docker exec -it images_name bash
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ClickHouse安装过程记录]]></title>
-        <id>https://maopashui.github.io/post/clickhouse-an-zhuang-guo-cheng-ji-lu/</id>
-        <link href="https://maopashui.github.io/post/clickhouse-an-zhuang-guo-cheng-ji-lu/">
-        </link>
-        <updated>2021-05-13T08:06:51.000Z</updated>
-        <content type="html"><![CDATA[<p>安装环境：Centos7<br>
-先在centos添加国内源<br>
-然后添加官方存储库：</p>
-<pre><code class="language-shell">sudo yum install yum-utils
-sudo rpm --import https://repo.clickhouse.tech/CLICKHOUSE-KEY.GPG
-sudo yum-config-manager --add-repo https://repo.clickhouse.tech/rpm/stable/x86_64
-sudo yum install clickhouse-server clickhouse-client -y
-</code></pre>
-<p>默认安装在/etc/clickhouse-server、/etc/clickhouse-client<br>
-在centos7上，启动命令</p>
-<pre><code class="language-shell">systemctl start clickhouse-server
-</code></pre>
-<p>官方启动</p>
-<pre><code class="language-text">启动 
-如果没有service，可以运行如下命令在后台启动服务：
-
-$ sudo /etc/init.d/clickhouse-server start
-日志文件将输出在/var/log/clickhouse-server/文件夹。
-
-如果服务器没有启动，检查/etc/clickhouse-server/config.xml中的配置。
-
-您也可以手动从控制台启动服务器:
-
-$ clickhouse-server --config-file=/etc/clickhouse-server/config.xml
-</code></pre>
-<p>查看是否启动</p>
-<pre><code class="language-shell">$ clickhouse-client
-:) SELECT 1
-</code></pre>
-<p>其他需要注意的地方，<br>
-1、9000端口占用,clickhouse启动报错，修改/etc/clickhouse-server/config.xml<br>
-这里主要修改tcp_port即可，默认是9000</p>
-<pre><code class="language-shell">clickhouse-client --port 端口
-</code></pre>
-<p>2、开启远程连接<br>
-修改/etc/clickhouse-server/config.xml，将&lt;listen_host&gt;::&lt;listen_host&gt;的注释取消掉<br>
-重启服务</p>
-<pre><code class="language-shell">systemctl restart clickhouse-server
-</code></pre>
-<p>3、配置default的密码<br>
-设置用户名密码<br>
-1.CLICKHOUSE的密码有2种形式，一种是明文，一种是写SHA256SUM的HASH值<br>
-官方不建议直接写明文密码，可以用以下命令生成密码</p>
-<pre><code class="language-shell">PASSWORD=$(base64 &lt; /dev/urandom | head -c8); echo &quot;$PASSWORD&quot;; echo -n &quot;$PASSWORD&quot; | sha256sum | tr -d '-'
-</code></pre>
-<p>这样可以得到两行数据，第一行是密码明文，第二行是密码密文<br>
-ClickHouse的配置文件默认地址 /etc/clickhouse/users.xml<br>
-找到users --&gt; default --&gt; 标签下的password修改成password_sha256_hex，并把密文填进去</p>
-<pre><code class="language-xml">&lt;password_sha256_hex&gt;密码密文&lt;/password_sha256_hex&gt;
-</code></pre>
-<p>修改密码后，clickhouse-client需变更连接方式</p>
-<pre><code class="language-shell">clickhouse-client -h ip地址 -d default -m -u default --password 密码明文
-</code></pre>
-<p>参考连接：</p>
-<blockquote>
-<p>https://clickhouse.tech/docs/zh/getting-started/install/<br>
-https://blog.csdn.net/chengyuqiang/article/details/108534587</p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Windows安装Superset]]></title>
-        <id>https://maopashui.github.io/post/windows-an-zhuang-superset/</id>
-        <link href="https://maopashui.github.io/post/windows-an-zhuang-superset/">
-        </link>
-        <updated>2021-01-15T06:47:27.000Z</updated>
-        <summary type="html"><![CDATA[<p>💻搭建系统：Windows10 企业版 LTSB<br>
-⌨️可视化系统：Superset</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>💻搭建系统：Windows10 企业版 LTSB<br>
-⌨️可视化系统：Superset</p>
-<!-- more -->
-<p>创建Superset python虚拟环境<br>
-<img src="https://img.imgdb.cn/item/6008dba73ffa7d37b31d020d.jpg" alt="1610693699538" loading="lazy"></p>
-<p>安装superset<br>
-<img src="https://img.imgdb.cn/item/6008dba23ffa7d37b31d00d0.jpg" alt="1610693686534" loading="lazy"><br>
-然后执行安装命令</p>
-<pre><code class="language-shell">pip install wtforms_json flask_compress celery flask_migrate flask_talisman flask_caching sqlparse bleach markdown numpy pandas parsedatetime pathlib2 simplejson humanize geohash polyline geopy cryptography backoff msgpack pyarrow contextlib2 croniter retry selenium isodate -i https://pypi.douban.com/simple
-</code></pre>
-<p>坑：Microsoft Visual C++ is requird<br>
-<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf68a.jpg" alt="1610693666385" loading="lazy"><br>
-解决办法：安装Microsoft Visual C++ 14.0 tools http://go.microsoft.com/fwlink/?LinkId=691126 这个工具安装有几个G,安装速度尚可</p>
-<p>对于安装不成功的包，示例如下</p>
-<pre><code class="language-shell">py -3 -m pip install pandas -i https://pypi.douban.com/simple/ --trusted-host pypi.douban.com
-</code></pre>
-<p>或手动在https://pypi.org/project/   或 https://pypi.tuna.tsinghua.edu.cn/simple 中找对应的包进行安装</p>
-<pre><code class="language-shell">python -m pip install pandas-1.2.0-cp38-cp38-win_amd64.whl
-</code></pre>
-<p>进入虚拟环境 superset/bin路径下，初始化数据库</p>
-<p>如果使用其他数据库请先修改config.py文件配置</p>
-<pre><code class="language-shell">(venv) D:\workspace\superset\venv\Lib\site-packages\superset\bin&gt;python superset db upgrade
-</code></pre>
-<p>报错1<br>
-<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf686.png" alt="1610693642732" loading="lazy"></p>
-<p>解决方式是：</p>
-<p>geohash这个组件安装之后在site-packages下其目录是大写的&quot;Geohash&quot;，这导致geohash这个组件pip install之后，仍然报找不到。我们把文件夹名&quot;Geohash&quot;修改为“geohash”。再将geohash文件夹下_<em>init</em>_.py文件，用文本打开，里面的from geohash修改成 from .geohash。<br>
-<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf680.png" alt="1610693626515" loading="lazy"><br>
-<em>init</em>.py文件：<br>
-<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf67c.png" alt="1610693604380" loading="lazy"></p>
-<p>报错2：<br>
-<img src="https://img.imgdb.cn/item/6008db8d3ffa7d37b31cf67a.png" alt="1610693586743" loading="lazy"><br>
-解决方式是：</p>
-<p>手动安装cryptography</p>
-<pre><code class="language-shell">python -m pip install D:\workspace\superset\cryptography-3.2.1-cp38-cp38-win_amd64.whl
-</code></pre>
-<p>同时建议安装低版本sqlalchemy</p>
-<pre><code class="language-shell">pip install SQLAlchemy==1.2.18
-</code></pre>
-<p>报错3：<br>
-<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf087.png" alt="1610693401718" loading="lazy"><br>
-解决方式是：<br>
-Python3.8不再支持time.clock，但在调用时依然包含该方法；<br>
-有效处理：<br>
-用time.perf_counter()替换</p>
-<pre><code>import time
-
-tis1 =time.perf_counter()
-print(&quot;等待5秒......&quot;)
-time.sleep(5)
-tis2=time.perf_counter()
-print(tis2-tis1)
-</code></pre>
-<p>报错4：<br>
-<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf089.png" alt="1610693433164" loading="lazy"><br>
-解决方法：</p>
-<p>手动安装pyarrow</p>
-<pre><code class="language-shell">python -m pip install D:\workspace\superset\pyarrow-2.0.0-cp38-cp38-win_amd64.whl
-</code></pre>
-<p>执行superset相关命令</p>
-<pre><code class="language-shell">fabmanager create-admin --app superset
-或下面的命令，建议下面这种方式
-set FLASK_APP=superset（解决报错AttributeError: 'NoneType' object has no attribute 'auth_type'）
-flask fab create-admin
-</code></pre>
-<p>坑：</p>
-<figure data-type="image" tabindex="1"><img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf08d.jpg" alt="1610693475915" loading="lazy"></figure>
-<p>解决办法：pip install flask-appbuilder<br>
-<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf092.jpg" alt="1610693525828" loading="lazy"><br>
-报错：<br>
-<img src="https://img.imgdb.cn/item/6008db823ffa7d37b31cf097.png" alt="1610693546986" loading="lazy"><br>
-解决方法：在superset/bin下执行</p>
-<pre><code class="language-shell">python superset fab create-admin
-</code></pre>
-<p>然后初始化系统并加载实例</p>
-<pre><code class="language-shell">python superset init
-python superset load-examples
-</code></pre>
-<p>注意在load-examples这步由于raw.githubusercontent.com国内网络访问出现问题，所以请科学上网一下。</p>
-<p>最后运行</p>
-<pre><code class="language-shell">python superset run
 </code></pre>
 ]]></content>
     </entry>
