@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MySQL及ORACLE架构基本知识记录 | 猫怕水的博客</title>
+<meta name="description" content="纸上得来终觉浅，绝知此事要躬行" />
+<link rel="shortcut icon" href="https://www.x2ve.com/favicon.ico?v=1666008987752">
+<link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-y/font-awesome/5.7.2/css/all.css" integrity="sha384-MTIz+PpCFMazCVo1SXqBcaPuVqnzoQVhp2GXI6EqlVTsseE3YdOZ6FyU/hsRp4uo" crossorigin="anonymous">
+<link rel="stylesheet" href="https://s3.pstatp.com/cdn/expire-1-y/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.x2ve.com/styles/main.css">
+
+<script src="https://s3.pstatp.com/cdn/expire-1-y/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://www.x2ve.com">
+  <img class="avatar" src="https://www.x2ve.com/images/avatar.png?v=1666008987752" alt="">
+  </a>
+  <h1 class="site-title">
+    猫怕水的博客
+  </h1>
+  <p class="site-description">
+    纸上得来终觉浅，绝知此事要躬行
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="https://www.x2ve.com/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://www.x2ve.com/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://www.x2ve.com/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://www.x2ve.com/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              MySQL及ORACLE架构基本知识记录
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-10-17
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="mysql">MySQL:</h3>
+<h5 id="1-如何判断两套库之间的关联">1、如何判断两套库之间的关联：</h5>
+<pre><code class="language-sql">--MySQL技术支持推荐方式：
+-- 主节点上执行：
+show processlist -- 这里会有Binlog Dump GTID对应的找出所有的从节点ip+通信端口；
+-- 从节点上执行：
+show slave status\G -- 这里会查询出来Master_Host对应的主节点IP
+
+-- 目前所用关联一套库方式
+-- *****************
+-- 因为采集到的iplist包含了多个ip，需要进行遍历，
+-- 在加工规则上，masteruuid+实例名一致则算作一套库更容易加工
+-- *****************
+-- 主节点上执行：
+select @server_uuid -- 查询出当前节点上的uuid号
+-- 从节点上执行：
+show slave status\G -- 这里会查询出来Master_UUID，，该值指向主节点的serveruuid
+</code></pre>
+<h5 id="2-mysql复制方式">2、MySQL复制方式</h5>
+<pre><code class="language-shell">#1、异步复制（Async Replication）
+主库将更新写入Binlog日志文件后，不需要等待数据更新是否已经复制到从库中，就可以继续处理更多的请求。Master将事件写入binlog，但并不知道Slave是否或何时已经接收且已处理。在异步复制的机制的情况下，如果Master宕机，事务在Master上已提交，但很可能这些事务没有传到任何的Slave上。假设有Master-&gt;Salve故障转移的机制，此时Slave也可能会丢失事务。MySQL复制默认是异步复制，异步复制提供了最佳性能。
+
+#2、同步复制（Sync Replication）
+主库将更新写入Binlog日志文件后，需要等待数据更新已经复制到从库中，并且已经在从库执行成功，然后才能返回继续处理其它的请求。同步复制提供了最佳安全性，保证数据安全，数据不会丢失，但对性能有一定的影响。
+
+#3、半同步复制（Semi-Sync Replication）
+主库提交更新写入二进制日志文件后，等待数据更新写入了从服务器中继日志中，然后才能再继续处理其它请求。该功能确保至少有1个从库接收完主库传递过来的binlog内容已经写入到自己的relay log里面了，才会通知主库上面的等待线程，该操作完毕。
+半同步复制，是最佳安全性与最佳性能之间的一个折中。
+MySQL 5.5版本之后引入了半同步复制功能，主从服务器必须安装半同步复制插件，才能开启该复制功能。如果等待超时，超过rpl_semi_sync_master_timeout参数设置时间（默认值为10000，表示10秒），则关闭半同步复制，并自动转换为异步复制模式。当master dump线程发送完一个事务的所有事件之后，如果在rpl_semi_sync_master_timeout内，收到了从库的响应，则主从又重新恢复为增强半同步复制。
+ACK (Acknowledge character）即是确认字符。
+
+#4、增强半同步复制（lossless Semi-Sync Replication、无损复制）
+增强半同步是在MySQL 5.7引入，其实半同步可以看成是一个过渡功能，因为默认的配置就是增强半同步，所以，大家一般说的半同步复制其实就是增强的半同步复制，也就是无损复制。
+增强半同步和半同步不同的是，等待ACK时间不同
+rpl_semi_sync_master_wait_point = AFTER_SYNC（默认）
+半同步的问题是因为等待ACK的点是Commit之后，此时Master已经完成数据变更，用户已经可以看到最新数据，当Binlog还未同步到Slave时，发生主从切换，那么此时从库是没有这个最新数据的，用户看到的是老数据。
+增强半同步将等待ACK的点放在提交Commit之前，此时数据还未被提交，外界看不到数据变更，此时如果发送主从切换，新库依然还是老数据，不存在数据不一致的问题
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://pic1.imgdb.cn/item/634d176c16f2c2beb1fa5726.png" alt="img" loading="lazy"></figure>
+<h5 id="3-加工规则">3、加工规则</h5>
+<pre><code class="language-shell"># HA 
+# masteruuid+instancename+dbarch
+HA及容灾：当多个物理节点上，masteruuid一致，且实例名一致，则算作一组数据库
+迁移是特殊情况：这里HA的主节点masteruuid指向单节点或其他主节点，该种情况下，会在HA主节点上有一个channel_name的标识，当有该标识时，调整当前节点的masteruuid为serveruuid即可，然后加工规则同上
+# MGR 
+# mgrinstancename+dbarch
+# 容灾：mgrinstancename+masteruuid+dbarch
+优先判断mgr内部，mgrinstancme（replication_group_name）是一致的，如果是容灾，则需要关联主从节点上的masteruuid是否一致,且库名取实例名较短的
+# RHCS
+# rhcsnames+instancename+dbarch
+# rhcs+rhcs:rhcsnames+masteruuid+dbarch
+优先判断rhcs是否一致，通过clustat查询机器即可得到，如果还有主从关系，则通过masteruuid来关联,且库名实例名取较长的
+# 单机或主从
+# instancename+dbarch
+单机：实例名唯一
+主从：
+</code></pre>
+<h4 id="一-ha">一、HA</h4>
+<h5 id="1-ha架构">1、HA架构</h5>
+<p>由两个节点构成，其中一台为备份节点，当主节点不可用时，HA自动切换到备份节点</p>
+<figure data-type="image" tabindex="2"><img src="https://pic1.imgdb.cn/item/634bfa1616f2c2beb185ab1e.png" alt="image-20221016153453620" loading="lazy"></figure>
+<h5 id="2-ha容灾">2、HA容灾</h5>
+<p>由两个HA组成，其中一个可看作主，一个看作从，两者之间通过gtid复制来保持数据一致</p>
+<figure data-type="image" tabindex="3"><img src="https://pic1.imgdb.cn/item/634d131a16f2c2beb1f363a4.png" alt="image-20221017163017552" loading="lazy"></figure>
+<h5 id="3-ha单机">3、HA+单机</h5>
+<figure data-type="image" tabindex="4"><img src="https://pic1.imgdb.cn/item/634bfa7816f2c2beb1865e89.png" alt="image-20221016171144307" loading="lazy"></figure>
+<h5 id="4-迁移情况">4、迁移情况</h5>
+<p>HA从单节点复制数据，待复制完后，断开两者之间的关联，则有两套库</p>
+<figure data-type="image" tabindex="5"><img src="https://pic1.imgdb.cn/item/634bfad716f2c2beb187065c.png" alt="image-20221016154121799" loading="lazy"></figure>
+<h4 id="二-mgr">二、MGR</h4>
+<h5 id="1-mgr架构">1、MGR架构</h5>
+<p>单主模式：主节点可指定，当节点不可用时，自动在剩余从节点中选举产生主节点</p>
+<p>​	<img src="https://pic1.imgdb.cn/item/634bfaef16f2c2beb1872c4d.png" alt="image-20221016154546798" loading="lazy"></p>
+<h5 id="2-mgr容灾">2、MGR容灾</h5>
+<p>两者之间互为主从，可以进行切换</p>
+<figure data-type="image" tabindex="6"><img src="https://pic1.imgdb.cn/item/634bfb0516f2c2beb18753d8.png" alt="image-20221016154620356" loading="lazy"></figure>
+<h4 id="三-rhcs">三、RHCS</h4>
+<h5 id="1-rhcs架构">1、RHCS架构</h5>
+<p>通过共享存储来实现集群效果</p>
+<figure data-type="image" tabindex="7"><img src="https://pic1.imgdb.cn/item/634bfb1b16f2c2beb1877b56.png" alt="image-20221016124909298" loading="lazy"></figure>
+<h5 id="2-rhcsrhcs">2、RHCS+RHCS</h5>
+<figure data-type="image" tabindex="8"><img src="https://pic1.imgdb.cn/item/634bfb2f16f2c2beb1879dae.png" alt="image-20221016125435687" loading="lazy"></figure>
+<h5 id="3-rhcsrhcs单机">3、RHCS+RHCS+单机</h5>
+<figure data-type="image" tabindex="9"><img src="https://pic1.imgdb.cn/item/634bfb4816f2c2beb187c930.png" alt="image-20221016171232542" loading="lazy"></figure>
+<h4 id="四-单机或主从">四、单机或主从</h4>
+<h5 id="1-单机">1、单机</h5>
+<figure data-type="image" tabindex="10"><img src="https://pic1.imgdb.cn/item/634bfb5e16f2c2beb187ed14.png" alt="image-20221016125752583" loading="lazy"></figure>
+<h5 id="2-一主一从或一主多从">2、一主一从或一主多从</h5>
+<h5 id=""><img src="https://pic1.imgdb.cn/item/634d137a16f2c2beb1f3fc37.png" alt="image-20221017163112758" loading="lazy"><img src="https://pic1.imgdb.cn/item/634bfb8516f2c2beb1882e36.png" alt="image-20221016154751999" loading="lazy"></h5>
+<h2 id="oracle">ORACLE</h2>
+<h5 id="加工规则">加工规则</h5>
+<pre><code class="language-shell"># DG
+# dglist+dbname+dbarch
+DG:dglist取主节点上uniquename相同的，且dbname相同，则为一组DG库
+# RAC
+# clustername+dbname+dbarch
+RAC:取集群名和数据库名一致的数据为一组库
+# 单机
+# dbname+dbarch
+单机：数据库名唯一
+</code></pre>
+<h4 id="一-rac">一、RAC</h4>
+<p>两个数据库节点间通过私有IP通信，外部访问则通过vip，或者scanip自动分配访问节点（注意：11g主要通过vip，12以上通过scanip访问）</p>
+<figure data-type="image" tabindex="11"><img src="https://pic1.imgdb.cn/item/634bfb9916f2c2beb1884ed4.png" alt="dbscan-ORACLE-RAC.drawio" loading="lazy"></figure>
+<h4 id="二-dg">二、DG</h4>
+<p>两个或多个RAC，其中一个为主，其中dglist可通过在每个节点上v$dataguard_config视图（11g只有uniquename，没有节点角色信息）查询出来，亦可通过每个节点dgmgr下show configuration lag命令查询</p>
+<figure data-type="image" tabindex="12"><img src="https://pic1.imgdb.cn/item/634bfbab16f2c2beb1886d02.png" alt="dbscan-ORACLE-DG.drawio" loading="lazy"></figure>
+<h4 id="三-单机">三、单机</h4>
+<figure data-type="image" tabindex="13"><img src="https://pic1.imgdb.cn/item/634bfbbc16f2c2beb18888a7.png" alt="dbscan-ORACLE-单机.drawio" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#mysql">MySQL:</a><br>
+*
+<ul>
+<li><a href="#1-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%A4%E5%A5%97%E5%BA%93%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E8%81%94">1、如何判断两套库之间的关联：</a></li>
+<li><a href="#2-mysql%E5%A4%8D%E5%88%B6%E6%96%B9%E5%BC%8F">2、MySQL复制方式</a></li>
+<li><a href="#3-%E5%8A%A0%E5%B7%A5%E8%A7%84%E5%88%99">3、加工规则</a></li>
+<li><a href="#%E4%B8%80-ha">一、HA</a>
+<ul>
+<li><a href="#1-ha%E6%9E%B6%E6%9E%84">1、HA架构</a></li>
+<li><a href="#2-ha%E5%AE%B9%E7%81%BE">2、HA容灾</a></li>
+<li><a href="#3-ha%E5%8D%95%E6%9C%BA">3、HA+单机</a></li>
+<li><a href="#4-%E8%BF%81%E7%A7%BB%E6%83%85%E5%86%B5">4、迁移情况</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-mgr">二、MGR</a>
+<ul>
+<li><a href="#1-mgr%E6%9E%B6%E6%9E%84">1、MGR架构</a></li>
+<li><a href="#2-mgr%E5%AE%B9%E7%81%BE">2、MGR容灾</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-rhcs">三、RHCS</a>
+<ul>
+<li><a href="#1-rhcs%E6%9E%B6%E6%9E%84">1、RHCS架构</a></li>
+<li><a href="#2-rhcsrhcs">2、RHCS+RHCS</a></li>
+<li><a href="#3-rhcsrhcs%E5%8D%95%E6%9C%BA">3、RHCS+RHCS+单机</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E5%8D%95%E6%9C%BA%E6%88%96%E4%B8%BB%E4%BB%8E">四、单机或主从</a>
+<ul>
+<li><a href="#1-%E5%8D%95%E6%9C%BA">1、单机</a></li>
+<li><a href="#2-%E4%B8%80%E4%B8%BB%E4%B8%80%E4%BB%8E%E6%88%96%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E">2、一主一从或一主多从</a></li>
+<li><a href="#">!image-20221017163112758!image-20221016154751999</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#oracle">ORACLE</a><br>
+*<br>
+*<br>
+* <a href="#%E5%8A%A0%E5%B7%A5%E8%A7%84%E5%88%99">加工规则</a>
+<ul>
+<li><a href="#%E4%B8%80-rac">一、RAC</a></li>
+<li><a href="#%E4%BA%8C-dg">二、DG</a></li>
+<li><a href="#%E4%B8%89-%E5%8D%95%E6%9C%BA">三、单机</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://www.x2ve.com/post/pipenv-de-ji-ben-shi-yong/">
+              <h3 class="post-title">
+                pipenv的基本使用
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span> | 
+  <a class="rss" href="https://www.x2ve.com/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.x2ve.com</id>
     <title>猫怕水的博客</title>
-    <updated>2022-09-28T02:21:14.515Z</updated>
+    <updated>2022-10-17T12:16:42.671Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.x2ve.com"/>
     <link rel="self" href="https://www.x2ve.com/atom.xml"/>
@@ -10,6 +10,123 @@
     <logo>https://www.x2ve.com/images/avatar.png</logo>
     <icon>https://www.x2ve.com/favicon.ico</icon>
     <rights>All rights reserved 2022, 猫怕水的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[MySQL及ORACLE架构基本知识记录]]></title>
+        <id>https://www.x2ve.com/post/mysql-ji-oracle-jia-gou-ji-ben-zhi-shi-ji-lu/</id>
+        <link href="https://www.x2ve.com/post/mysql-ji-oracle-jia-gou-ji-ben-zhi-shi-ji-lu/">
+        </link>
+        <updated>2022-10-17T12:14:56.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="mysql">MySQL:</h3>
+<h5 id="1-如何判断两套库之间的关联">1、如何判断两套库之间的关联：</h5>
+<pre><code class="language-sql">--MySQL技术支持推荐方式：
+-- 主节点上执行：
+show processlist -- 这里会有Binlog Dump GTID对应的找出所有的从节点ip+通信端口；
+-- 从节点上执行：
+show slave status\G -- 这里会查询出来Master_Host对应的主节点IP
+
+-- 目前所用关联一套库方式
+-- *****************
+-- 因为采集到的iplist包含了多个ip，需要进行遍历，
+-- 在加工规则上，masteruuid+实例名一致则算作一套库更容易加工
+-- *****************
+-- 主节点上执行：
+select @server_uuid -- 查询出当前节点上的uuid号
+-- 从节点上执行：
+show slave status\G -- 这里会查询出来Master_UUID，，该值指向主节点的serveruuid
+</code></pre>
+<h5 id="2-mysql复制方式">2、MySQL复制方式</h5>
+<pre><code class="language-shell">#1、异步复制（Async Replication）
+主库将更新写入Binlog日志文件后，不需要等待数据更新是否已经复制到从库中，就可以继续处理更多的请求。Master将事件写入binlog，但并不知道Slave是否或何时已经接收且已处理。在异步复制的机制的情况下，如果Master宕机，事务在Master上已提交，但很可能这些事务没有传到任何的Slave上。假设有Master-&gt;Salve故障转移的机制，此时Slave也可能会丢失事务。MySQL复制默认是异步复制，异步复制提供了最佳性能。
+
+#2、同步复制（Sync Replication）
+主库将更新写入Binlog日志文件后，需要等待数据更新已经复制到从库中，并且已经在从库执行成功，然后才能返回继续处理其它的请求。同步复制提供了最佳安全性，保证数据安全，数据不会丢失，但对性能有一定的影响。
+
+#3、半同步复制（Semi-Sync Replication）
+主库提交更新写入二进制日志文件后，等待数据更新写入了从服务器中继日志中，然后才能再继续处理其它请求。该功能确保至少有1个从库接收完主库传递过来的binlog内容已经写入到自己的relay log里面了，才会通知主库上面的等待线程，该操作完毕。
+半同步复制，是最佳安全性与最佳性能之间的一个折中。
+MySQL 5.5版本之后引入了半同步复制功能，主从服务器必须安装半同步复制插件，才能开启该复制功能。如果等待超时，超过rpl_semi_sync_master_timeout参数设置时间（默认值为10000，表示10秒），则关闭半同步复制，并自动转换为异步复制模式。当master dump线程发送完一个事务的所有事件之后，如果在rpl_semi_sync_master_timeout内，收到了从库的响应，则主从又重新恢复为增强半同步复制。
+ACK (Acknowledge character）即是确认字符。
+
+#4、增强半同步复制（lossless Semi-Sync Replication、无损复制）
+增强半同步是在MySQL 5.7引入，其实半同步可以看成是一个过渡功能，因为默认的配置就是增强半同步，所以，大家一般说的半同步复制其实就是增强的半同步复制，也就是无损复制。
+增强半同步和半同步不同的是，等待ACK时间不同
+rpl_semi_sync_master_wait_point = AFTER_SYNC（默认）
+半同步的问题是因为等待ACK的点是Commit之后，此时Master已经完成数据变更，用户已经可以看到最新数据，当Binlog还未同步到Slave时，发生主从切换，那么此时从库是没有这个最新数据的，用户看到的是老数据。
+增强半同步将等待ACK的点放在提交Commit之前，此时数据还未被提交，外界看不到数据变更，此时如果发送主从切换，新库依然还是老数据，不存在数据不一致的问题
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://pic1.imgdb.cn/item/634d176c16f2c2beb1fa5726.png" alt="img" loading="lazy"></figure>
+<h5 id="3-加工规则">3、加工规则</h5>
+<pre><code class="language-shell"># HA 
+# masteruuid+instancename+dbarch
+HA及容灾：当多个物理节点上，masteruuid一致，且实例名一致，则算作一组数据库
+迁移是特殊情况：这里HA的主节点masteruuid指向单节点或其他主节点，该种情况下，会在HA主节点上有一个channel_name的标识，当有该标识时，调整当前节点的masteruuid为serveruuid即可，然后加工规则同上
+# MGR 
+# mgrinstancename+dbarch
+# 容灾：mgrinstancename+masteruuid+dbarch
+优先判断mgr内部，mgrinstancme（replication_group_name）是一致的，如果是容灾，则需要关联主从节点上的masteruuid是否一致,且库名取实例名较短的
+# RHCS
+# rhcsnames+instancename+dbarch
+# rhcs+rhcs:rhcsnames+masteruuid+dbarch
+优先判断rhcs是否一致，通过clustat查询机器即可得到，如果还有主从关系，则通过masteruuid来关联,且库名实例名取较长的
+# 单机或主从
+# instancename+dbarch
+单机：实例名唯一
+主从：
+</code></pre>
+<h4 id="一-ha">一、HA</h4>
+<h5 id="1-ha架构">1、HA架构</h5>
+<p>由两个节点构成，其中一台为备份节点，当主节点不可用时，HA自动切换到备份节点</p>
+<figure data-type="image" tabindex="2"><img src="https://pic1.imgdb.cn/item/634bfa1616f2c2beb185ab1e.png" alt="image-20221016153453620" loading="lazy"></figure>
+<h5 id="2-ha容灾">2、HA容灾</h5>
+<p>由两个HA组成，其中一个可看作主，一个看作从，两者之间通过gtid复制来保持数据一致</p>
+<figure data-type="image" tabindex="3"><img src="https://pic1.imgdb.cn/item/634d131a16f2c2beb1f363a4.png" alt="image-20221017163017552" loading="lazy"></figure>
+<h5 id="3-ha单机">3、HA+单机</h5>
+<figure data-type="image" tabindex="4"><img src="https://pic1.imgdb.cn/item/634bfa7816f2c2beb1865e89.png" alt="image-20221016171144307" loading="lazy"></figure>
+<h5 id="4-迁移情况">4、迁移情况</h5>
+<p>HA从单节点复制数据，待复制完后，断开两者之间的关联，则有两套库</p>
+<figure data-type="image" tabindex="5"><img src="https://pic1.imgdb.cn/item/634bfad716f2c2beb187065c.png" alt="image-20221016154121799" loading="lazy"></figure>
+<h4 id="二-mgr">二、MGR</h4>
+<h5 id="1-mgr架构">1、MGR架构</h5>
+<p>单主模式：主节点可指定，当节点不可用时，自动在剩余从节点中选举产生主节点</p>
+<p>​	<img src="https://pic1.imgdb.cn/item/634bfaef16f2c2beb1872c4d.png" alt="image-20221016154546798" loading="lazy"></p>
+<h5 id="2-mgr容灾">2、MGR容灾</h5>
+<p>两者之间互为主从，可以进行切换</p>
+<figure data-type="image" tabindex="6"><img src="https://pic1.imgdb.cn/item/634bfb0516f2c2beb18753d8.png" alt="image-20221016154620356" loading="lazy"></figure>
+<h4 id="三-rhcs">三、RHCS</h4>
+<h5 id="1-rhcs架构">1、RHCS架构</h5>
+<p>通过共享存储来实现集群效果</p>
+<figure data-type="image" tabindex="7"><img src="https://pic1.imgdb.cn/item/634bfb1b16f2c2beb1877b56.png" alt="image-20221016124909298" loading="lazy"></figure>
+<h5 id="2-rhcsrhcs">2、RHCS+RHCS</h5>
+<figure data-type="image" tabindex="8"><img src="https://pic1.imgdb.cn/item/634bfb2f16f2c2beb1879dae.png" alt="image-20221016125435687" loading="lazy"></figure>
+<h5 id="3-rhcsrhcs单机">3、RHCS+RHCS+单机</h5>
+<figure data-type="image" tabindex="9"><img src="https://pic1.imgdb.cn/item/634bfb4816f2c2beb187c930.png" alt="image-20221016171232542" loading="lazy"></figure>
+<h4 id="四-单机或主从">四、单机或主从</h4>
+<h5 id="1-单机">1、单机</h5>
+<figure data-type="image" tabindex="10"><img src="https://pic1.imgdb.cn/item/634bfb5e16f2c2beb187ed14.png" alt="image-20221016125752583" loading="lazy"></figure>
+<h5 id="2-一主一从或一主多从">2、一主一从或一主多从</h5>
+<h5 id=""><img src="https://pic1.imgdb.cn/item/634d137a16f2c2beb1f3fc37.png" alt="image-20221017163112758" loading="lazy"><img src="https://pic1.imgdb.cn/item/634bfb8516f2c2beb1882e36.png" alt="image-20221016154751999" loading="lazy"></h5>
+<h2 id="oracle">ORACLE</h2>
+<h5 id="加工规则">加工规则</h5>
+<pre><code class="language-shell"># DG
+# dglist+dbname+dbarch
+DG:dglist取主节点上uniquename相同的，且dbname相同，则为一组DG库
+# RAC
+# clustername+dbname+dbarch
+RAC:取集群名和数据库名一致的数据为一组库
+# 单机
+# dbname+dbarch
+单机：数据库名唯一
+</code></pre>
+<h4 id="一-rac">一、RAC</h4>
+<p>两个数据库节点间通过私有IP通信，外部访问则通过vip，或者scanip自动分配访问节点（注意：11g主要通过vip，12以上通过scanip访问）</p>
+<figure data-type="image" tabindex="11"><img src="https://pic1.imgdb.cn/item/634bfb9916f2c2beb1884ed4.png" alt="dbscan-ORACLE-RAC.drawio" loading="lazy"></figure>
+<h4 id="二-dg">二、DG</h4>
+<p>两个或多个RAC，其中一个为主，其中dglist可通过在每个节点上v$dataguard_config视图（11g只有uniquename，没有节点角色信息）查询出来，亦可通过每个节点dgmgr下show configuration lag命令查询</p>
+<figure data-type="image" tabindex="12"><img src="https://pic1.imgdb.cn/item/634bfbab16f2c2beb1886d02.png" alt="dbscan-ORACLE-DG.drawio" loading="lazy"></figure>
+<h4 id="三-单机">三、单机</h4>
+<figure data-type="image" tabindex="13"><img src="https://pic1.imgdb.cn/item/634bfbbc16f2c2beb18888a7.png" alt="dbscan-ORACLE-单机.drawio" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[pipenv的基本使用]]></title>
         <id>https://www.x2ve.com/post/pipenv-de-ji-ben-shi-yong/</id>
@@ -336,22 +453,6 @@ db2set db2options=-td@  # 这里则不需要转义
 # db2 import命令；先连接，再导入，再退出
 # 需要注意中间的插入更新方式，字符集设置，分割符设置，提交行数
 db2 connect to &lt;DBNAME&gt; user &lt;USERNAME&gt; using &lt;PASSWORD&gt; &amp;&amp; db2 'import form '&lt;filename&gt;' of del modified by codepage=1208 coldel0x1e commitcount 10000 insert_update into &lt;TABLENAME&gt; (COLNAME,...COLNAME,COLNAME)' &amp;&amp; db2 terminate
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Docker小记]]></title>
-        <id>https://www.x2ve.com/post/docker-xiao-ji/</id>
-        <link href="https://www.x2ve.com/post/docker-xiao-ji/">
-        </link>
-        <updated>2022-04-03T04:00:32.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="常用命令">常用命令</h4>
-<pre><code class="language-shell"># 查看有哪些docker运行
-docker ps
-# 查看有哪些镜像
-docker images
-# 进入docker命令行
-docker exec -it images_name bash
 </code></pre>
 ]]></content>
     </entry>
